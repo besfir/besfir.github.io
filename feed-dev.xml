@@ -4,7 +4,7 @@
         <title>Besfir.log</title>
         <link>https://besfir.github.io</link>
         <description>Records Is The Rule Of Memory - Canon(2002)</description>
-        <lastBuildDate>Tue, 15 Aug 2023 05:39:30 GMT</lastBuildDate>
+        <lastBuildDate>Wed, 16 Aug 2023 17:27:08 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
         <image>
@@ -14,6 +14,20 @@
         </image>
         <copyright>All rights reserved since 2023, Besfir</copyright>
         <atom:link href="https://besfir.github.io/feed.xml" rel="self" type="application/rss+xml"/>
+        <item>
+            <title><![CDATA[Let's learn about the View Transition API]]></title>
+            <link>https://besfir.github.io/category/dev/2023/view-transition-basic</link>
+            <guid>https://besfir.github.io/category/dev/2023/view-transition-basic</guid>
+            <pubDate>Wed, 16 Aug 2023 17:19:00 GMT</pubDate>
+            <description><![CDATA[Chrome 111 introduced an interesting feature called the "View Transition API". In this article, we'll take a look at the View Transition API. What...Chrome 111 introduced an interesting feature called the "View Transition API". In this article, we'll take a look at the View Transition API. What...Chrome 111 introduced an interesting feature called the "View Transition API". In this article, we'll take a look at the View Transition API. What...]]></description>
+        </item>
+        <item>
+            <title><![CDATA[서버사이드 랜더링에도 페이지 전환 효과를? View Transition에 대해서 알아보자.]]></title>
+            <link>https://besfir.github.io/ko/category/dev/2023/view-transition-basic</link>
+            <guid>https://besfir.github.io/ko/category/dev/2023/view-transition-basic</guid>
+            <pubDate>Wed, 16 Aug 2023 17:19:00 GMT</pubDate>
+            <description><![CDATA[Chrome 111 버전에는 흥미로운 기능인 "View Transition API"가 추가되었다. 이번 글에서는 View Transition API에 대해 알아보도록 하겠다. View Transition API는 무엇인가? View Transition API는 서...Chrome 111 버전에는 흥미로운 기능인 "View Transition API"가 추가되었다. 이번 글에서는 View Transition API에 대해 알아보도록 하겠다. View Transition API는 무엇인가? View Transition API는 서...Chrome 111 버전에는 흥미로운 기능인 "View Transition API"가 추가되었다. 이번 글에서는 View Transition API에 대해 알아보도록 하겠다. View Transition API는 무엇인가? View Transition API는 서...]]></description>
+        </item>
         <item>
             <title><![CDATA[Let's learn about the relational database]]></title>
             <link>https://besfir.github.io/category/dev/2023/relational-database</link>

@@ -4,7 +4,7 @@
         <title>Besfir.log</title>
         <link>https://besfir.github.io</link>
         <description>Records Is The Rule Of Memory - Canon(2002)</description>
-        <lastBuildDate>Tue, 15 Aug 2023 05:39:45 GMT</lastBuildDate>
+        <lastBuildDate>Wed, 16 Aug 2023 17:27:23 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
         <image>
@@ -14,6 +14,228 @@
         </image>
         <copyright>All rights reserved since 2023, Besfir</copyright>
         <atom:link href="https://besfir.github.io/feed.xml" rel="self" type="application/rss+xml"/>
+        <item>
+            <title><![CDATA[Let's learn about the View Transition API]]></title>
+            <link>https://besfir.github.io/category/dev/2023/view-transition-basic</link>
+            <guid>https://besfir.github.io/category/dev/2023/view-transition-basic</guid>
+            <pubDate>Wed, 16 Aug 2023 17:19:00 GMT</pubDate>
+            <description><![CDATA[Chrome 111 introduced an interesting feature called the "View Transition API". In this article, we'll take a look at the View Transition API. What...]]></description>
+            <content:encoded><![CDATA[<p>Since the version Chrome 111, we was added an interesting feature called the "View Transition API".
+In this article, we'll take a look at the View Transition API.</p><h2 id="what-is-the-view-transition-api">What is the View Transition API?</h2><p>The View Transition API provides the ability to easily create animated transitions between different DOM states while updating DOM content at once.
+Let's take a look at some examples of where it can be used.</p><v-youtube id="odqzE2o2SsI" title="Reorder animation"></v-youtube><p>If the order of elements changes due to user interaction, it may be difficult to identify which elements have changed.
+In this case, a reordering animation can help the user recognize that the order has changed.
+In the example above, the View Transition API is applied to the draggable elements to make the reordering easier to recognize.</p><v-youtube id="5nVLhHNDvpc" title="Page transition effects for server-side rendering"></v-youtube><p>SSRs that utilize backend frameworks are MPAs, which means that it takes a lot more work to implement page transition animation effects compared to SPAs.
+However, by utilizing the View Transition API, it is relatively easy to implement page transition effects.
+In the demo video above, we applied the View Transition API to Express + Handlebars to implement the page transition effect, and the video plays uninterrupted even when the page is switched.</p><h2 id="try-it-out">Try it out</h2><v-alert><p>💡 As this is still an experimental feature, it only works with Chrome, Edge, and Opera, which are Chromium Engine-based browsers.</p></v-alert><p>For practice, we've created a simple example that toggles the shape of a shape when a button is clicked.
+We'll build on this example and add some code to demonstrate how to use it.</p><v-iframe src="https://codepen.io/preimezm/embed/KKbPqbN?default-tab=html%2Cresult"></v-iframe><h2 id="apply-view-transition-api">Apply View Transition API</h2><p>The basic usage is really simple.
+Just update the DOM inside <code>startViewTransition()</code> and the transition will be applied immediately.</p><pre><code __ignoreMap=""><span class="line" line="1"><span class="ct-297524">const</span><span class="ct-763743"> shape </span><span class="ct-848433">=</span><span class="ct-763743"> document</span><span class="ct-848433">.</span><span class="ct-488862">getElementById</span><span class="ct-763743">(</span><span class="ct-848433">'</span><span class="ct-423675">shape</span><span class="ct-848433">'</span><span class="ct-763743">)
+</span></span><span class="line highlight" line="2"><span class="ct-763743">shape</span><span class="ct-848433">.</span><span class="ct-488862">addEventListener</span><span class="ct-763743">(</span><span class="ct-848433">'</span><span class="ct-423675">click</span><span class="ct-848433">'</span><span class="ct-848433">,</span><span class="ct-763743"> </span><span class="ct-848433">()</span><span class="ct-763743"> </span><span class="ct-297524">=></span><span class="ct-763743"> document</span><span class="ct-848433">.</span><span class="ct-488862">startViewTransition</span><span class="ct-763743">(handleClick))
+</span></span><span class="line" line="3"><span>
+</span></span><span class="line" line="4"><span class="ct-297524">function</span><span class="ct-763743"> </span><span class="ct-488862">handleClick</span><span class="ct-848433">()</span><span class="ct-763743"> </span><span class="ct-848433">{
+</span></span><span class="line" line="5"><span class="ct-742507">  </span><span class="ct-763743">shape</span><span class="ct-848433">.</span><span class="ct-763743">classList</span><span class="ct-848433">.</span><span class="ct-488862">toggle</span><span class="ct-742507">(</span><span class="ct-848433">'</span><span class="ct-423675">active</span><span class="ct-848433">'</span><span class="ct-742507">)
+</span></span><span class="line" line="6"><span class="ct-848433">}</span></span></code></pre><p>We'll change from calling <code>updateDOM()</code> directly on click to updating via the View Transition API.
+If you click the button, you can see that the default transition effect, cross-fade, is applied.</p><v-iframe src="https://codepen.io/preimezm/embed/yLGBodR?default-tab=html%2Cresult"></v-iframe><h3 id="how-does-it-work">How does it work?</h3><p>The View Transition API can be summarized in the following steps.</p><ol><li>When <code>startViewTransition()</code> is called, the API takes a screenshot of the current page. 2.</li><li>The callback passed to <code>startViewTransition()</code> is called to change the DOM.</li><li>Capture the new state of the changed page as a live representation.</li><li>Construct a pseudo-element tree with the following structure.</li></ol><pre><code __ignoreMap=""><span class="line" line="1"><span>::view-transition
+</span></span><span class="line" line="2"><span>└─ ::view-transition-group(root)
+</span></span><span class="line" line="3"><span>   └─ ::view-transition-image-pair(root)
+</span></span><span class="line" line="4"><span>      ├─ ::view-transition-old(root)
+</span></span><span class="line" line="5"><span>      └─ ::view-transition-new(root)</span></span></code></pre><ul><li>The <code>::view-transition</code> is the top-level pseudo-element that contains all View Transition pseudo-element overlays.<ul><li>Adding the CSS property <code>view-transition-name</code> will create a <code>::view-transition-group(some-name)</code> overlay with that name.</li></ul></li><li>The <code>::view-transition-old(root)</code> is a screenshot of the old page we worked on in <code>1</code>, and the <code>::view-transition-new(root)</code> is a live representation captured in <code>3</code>.<ul><li>Both of these render as content similar to <code>&#x3C;img></code> or <code>&#x3C;video></code>, so they can be styled with attributes like <code>object-fit</code> or <code>object-position</code>.</li></ul></li></ul><ol start="5"><li>The default effect, a cross-fade, is applied to <code>::view-transition-old(root)</code> and <code>::view-transition-new(root)</code> to create a smooth transition.</li></ol><h3 id="custom-transition">Custom transition</h3><p>This time, let's replace the default transition with a different effect.
+We want the pre-update elements to disappear as they fade out to the left, and the post-update elements to appear as they fade in from the right.</p><pre><code __ignoreMap=""><span class="line" line="1"><span class="ct-848434">@keyframes</span><span class="ct-763743"> </span><span class="ct-763744">fade-in</span><span class="ct-763743"> </span><span class="ct-848433">{
+</span></span><span class="line" line="2"><span class="ct-763743">  </span><span class="ct-269037">from</span><span class="ct-763743"> </span><span class="ct-848433">{</span><span class="ct-763743"> </span><span class="ct-335843">opacity</span><span class="ct-848433">:</span><span class="ct-763743"> </span><span class="ct-118763">0</span><span class="ct-848433">;</span><span class="ct-763743"> </span><span class="ct-848433">}
+</span></span><span class="line" line="3"><span class="ct-848433">}
+</span></span><span class="line" line="4"><span>
+</span></span><span class="line" line="5"><span class="ct-848434">@keyframes</span><span class="ct-763743"> </span><span class="ct-763744">fade-out</span><span class="ct-763743"> </span><span class="ct-848433">{
+</span></span><span class="line" line="6"><span class="ct-763743">  </span><span class="ct-269037">to</span><span class="ct-763743"> </span><span class="ct-848433">{</span><span class="ct-763743"> </span><span class="ct-335843">opacity</span><span class="ct-848433">:</span><span class="ct-763743"> </span><span class="ct-118763">0</span><span class="ct-848433">;</span><span class="ct-763743"> </span><span class="ct-848433">}
+</span></span><span class="line" line="7"><span class="ct-848433">}
+</span></span><span class="line" line="8"><span>
+</span></span><span class="line" line="9"><span class="ct-848434">@keyframes</span><span class="ct-763743"> </span><span class="ct-763744">slide-from-right</span><span class="ct-763743"> </span><span class="ct-848433">{
+</span></span><span class="line" line="10"><span class="ct-763743">  </span><span class="ct-269037">from</span><span class="ct-763743"> </span><span class="ct-848433">{</span><span class="ct-763743"> </span><span class="ct-335843">transform</span><span class="ct-848433">:</span><span class="ct-763743"> </span><span class="ct-488862">translateX</span><span class="ct-848433">(</span><span class="ct-118763">50px</span><span class="ct-848433">);</span><span class="ct-763743"> </span><span class="ct-848433">}
+</span></span><span class="line" line="11"><span class="ct-848433">}
+</span></span><span class="line" line="12"><span>
+</span></span><span class="line" line="13"><span class="ct-848434">@keyframes</span><span class="ct-763743"> </span><span class="ct-763744">slide-to-left</span><span class="ct-763743"> </span><span class="ct-848433">{
+</span></span><span class="line" line="14"><span class="ct-763743">  </span><span class="ct-269037">to</span><span class="ct-763743"> </span><span class="ct-848433">{</span><span class="ct-763743"> </span><span class="ct-335843">transform</span><span class="ct-848433">:</span><span class="ct-763743"> </span><span class="ct-488862">translateX</span><span class="ct-848433">(</span><span class="ct-118763">-50px</span><span class="ct-848433">);</span><span class="ct-763743"> </span><span class="ct-848433">}
+</span></span><span class="line" line="15"><span class="ct-848433">}
+</span></span><span class="line" line="16"><span>
+</span></span><span class="line" line="17"><span class="ct-763743">::view-transition-old(root) </span><span class="ct-848433">{
+</span></span><span class="line" line="18"><span class="ct-763743">  </span><span class="ct-335843">animation</span><span class="ct-848433">:</span><span class="ct-763743"> </span><span class="ct-118763">190ms</span><span class="ct-763743"> </span><span class="ct-488862">cubic-bezier</span><span class="ct-848433">(</span><span class="ct-118763">0.4</span><span class="ct-848433">,</span><span class="ct-763743"> </span><span class="ct-118763">0</span><span class="ct-848433">,</span><span class="ct-763743"> </span><span class="ct-118763">1</span><span class="ct-848433">,</span><span class="ct-763743"> </span><span class="ct-118763">1</span><span class="ct-848433">)</span><span class="ct-763743"> both fade-out</span><span class="ct-848433">,
+</span></span><span class="line" line="19"><span class="ct-763743">    </span><span class="ct-118763">500ms</span><span class="ct-763743"> </span><span class="ct-488862">cubic-bezier</span><span class="ct-848433">(</span><span class="ct-118763">0.4</span><span class="ct-848433">,</span><span class="ct-763743"> </span><span class="ct-118763">0</span><span class="ct-848433">,</span><span class="ct-763743"> </span><span class="ct-118763">0.2</span><span class="ct-848433">,</span><span class="ct-763743"> </span><span class="ct-118763">1</span><span class="ct-848433">)</span><span class="ct-763743"> both slide-to-left</span><span class="ct-848433">;
+</span></span><span class="line" line="20"><span class="ct-848433">}
+</span></span><span class="line" line="21"><span>
+</span></span><span class="line" line="22"><span class="ct-763743">::view-transition-new(root) </span><span class="ct-848433">{
+</span></span><span class="line" line="23"><span class="ct-763743">  </span><span class="ct-335843">animation</span><span class="ct-848433">:</span><span class="ct-763743"> </span><span class="ct-118763">310ms</span><span class="ct-763743"> </span><span class="ct-488862">cubic-bezier</span><span class="ct-848433">(</span><span class="ct-118763">0</span><span class="ct-848433">,</span><span class="ct-763743"> </span><span class="ct-118763">0</span><span class="ct-848433">,</span><span class="ct-763743"> </span><span class="ct-118763">0.2</span><span class="ct-848433">,</span><span class="ct-763743"> </span><span class="ct-118763">1</span><span class="ct-848433">)</span><span class="ct-763743"> </span><span class="ct-118763">190ms</span><span class="ct-763743"> both fade-in</span><span class="ct-848433">,
+</span></span><span class="line" line="24"><span class="ct-763743">    </span><span class="ct-118763">500ms</span><span class="ct-763743"> </span><span class="ct-488862">cubic-bezier</span><span class="ct-848433">(</span><span class="ct-118763">0.4</span><span class="ct-848433">,</span><span class="ct-763743"> </span><span class="ct-118763">0</span><span class="ct-848433">,</span><span class="ct-763743"> </span><span class="ct-118763">0.2</span><span class="ct-848433">,</span><span class="ct-763743"> </span><span class="ct-118763">1</span><span class="ct-848433">)</span><span class="ct-763743"> both slide-from-right</span><span class="ct-848433">;
+</span></span><span class="line" line="25"><span class="ct-848433">}</span></span></code></pre><v-iframe src="https://codepen.io/preimezm/embed/poqzWJx?default-tab=html%2Cresult"></v-iframe><p>I hadn't noticed it before, but when I checked the results, I realized that the transition effect was also applied to the header.
+It's a little awkward to have transitions applied to the header when you're navigating through a web page.</p><h3 id="different-effects-for-different-elements">Different effects for different elements</h3><p>The previous example pointed out some awkwardness, so let's create two requirements and modify them accordingly.</p><ul><li>I don't want to apply a transition to the header before and after a DOM update because it doesn't change.</li><li>I want the button to move naturally as the size of the shape changes.</li></ul><pre><code __ignoreMap=""><span class="line highlight" line="1"><span class="ct-269037">header</span><span class="ct-848433">{
+</span></span><span class="line highlight" line="2"><span class="ct-763743">  view-transition-name</span><span class="ct-848433">:</span><span class="ct-763743"> header</span><span class="ct-848433">;
+</span></span><span class="line highlight" line="3"><span class="ct-848433">}
+</span></span><span class="line highlight" line="4"><span>
+</span></span><span class="line highlight" line="5"><span class="ct-848433">#</span><span class="ct-118763">activator</span><span class="ct-848433">{
+</span></span><span class="line highlight" line="6"><span class="ct-763743">  view-transition-name</span><span class="ct-848433">:</span><span class="ct-763743"> activator</span><span class="ct-848433">;
+</span></span><span class="line highlight" line="7"><span class="ct-848433">}
+</span></span><span class="line" line="8"><span>
+</span></span><span class="line" line="9"><span>
+</span></span><span class="line" line="10"><span class="ct-848434">@keyframes</span><span class="ct-763743"> </span><span class="ct-763744">fade-in</span><span class="ct-763743"> </span><span class="ct-848433">{
+</span></span><span class="line" line="11"><span class="ct-763743">  </span><span class="ct-269037">from</span><span class="ct-763743"> </span><span class="ct-848433">{</span><span class="ct-763743"> </span><span class="ct-335843">opacity</span><span class="ct-848433">:</span><span class="ct-763743"> </span><span class="ct-118763">0</span><span class="ct-848433">;</span><span class="ct-763743"> </span><span class="ct-848433">}
+</span></span><span class="line" line="12"><span class="ct-848433">}
+</span></span><span class="line" line="13"><span>
+</span></span><span class="line" line="14"><span class="ct-848434">@keyframes</span><span class="ct-763743"> </span><span class="ct-763744">fade-out</span><span class="ct-763743"> </span><span class="ct-848433">{
+</span></span><span class="line" line="15"><span class="ct-763743">  </span><span class="ct-269037">to</span><span class="ct-763743"> </span><span class="ct-848433">{</span><span class="ct-763743"> </span><span class="ct-335843">opacity</span><span class="ct-848433">:</span><span class="ct-763743"> </span><span class="ct-118763">0</span><span class="ct-848433">;</span><span class="ct-763743"> </span><span class="ct-848433">}
+</span></span><span class="line" line="16"><span class="ct-848433">}
+</span></span><span class="line" line="17"><span>
+</span></span><span class="line" line="18"><span class="ct-848434">@keyframes</span><span class="ct-763743"> </span><span class="ct-763744">slide-from-right</span><span class="ct-763743"> </span><span class="ct-848433">{
+</span></span><span class="line" line="19"><span class="ct-763743">  </span><span class="ct-269037">from</span><span class="ct-763743"> </span><span class="ct-848433">{</span><span class="ct-763743"> </span><span class="ct-335843">transform</span><span class="ct-848433">:</span><span class="ct-763743"> </span><span class="ct-488862">translateX</span><span class="ct-848433">(</span><span class="ct-118763">50px</span><span class="ct-848433">);</span><span class="ct-763743"> </span><span class="ct-848433">}
+</span></span><span class="line" line="20"><span class="ct-848433">}
+</span></span><span class="line" line="21"><span>
+</span></span><span class="line" line="22"><span class="ct-848434">@keyframes</span><span class="ct-763743"> </span><span class="ct-763744">slide-to-left</span><span class="ct-763743"> </span><span class="ct-848433">{
+</span></span><span class="line" line="23"><span class="ct-763743">  </span><span class="ct-269037">to</span><span class="ct-763743"> </span><span class="ct-848433">{</span><span class="ct-763743"> </span><span class="ct-335843">transform</span><span class="ct-848433">:</span><span class="ct-763743"> </span><span class="ct-488862">translateX</span><span class="ct-848433">(</span><span class="ct-118763">-50px</span><span class="ct-848433">);</span><span class="ct-763743"> </span><span class="ct-848433">}
+</span></span><span class="line" line="24"><span class="ct-848433">}
+</span></span><span class="line" line="25"><span>
+</span></span><span class="line" line="26"><span class="ct-763743">::view-transition-old(root) </span><span class="ct-848433">{
+</span></span><span class="line" line="27"><span class="ct-763743">  </span><span class="ct-335843">animation</span><span class="ct-848433">:</span><span class="ct-763743"> </span><span class="ct-118763">190ms</span><span class="ct-763743"> </span><span class="ct-488862">cubic-bezier</span><span class="ct-848433">(</span><span class="ct-118763">0.4</span><span class="ct-848433">,</span><span class="ct-763743"> </span><span class="ct-118763">0</span><span class="ct-848433">,</span><span class="ct-763743"> </span><span class="ct-118763">1</span><span class="ct-848433">,</span><span class="ct-763743"> </span><span class="ct-118763">1</span><span class="ct-848433">)</span><span class="ct-763743"> both fade-out</span><span class="ct-848433">,
+</span></span><span class="line" line="28"><span class="ct-763743">  </span><span class="ct-118763">500ms</span><span class="ct-763743"> </span><span class="ct-488862">cubic-bezier</span><span class="ct-848433">(</span><span class="ct-118763">0.4</span><span class="ct-848433">,</span><span class="ct-763743"> </span><span class="ct-118763">0</span><span class="ct-848433">,</span><span class="ct-763743"> </span><span class="ct-118763">0.2</span><span class="ct-848433">,</span><span class="ct-763743"> </span><span class="ct-118763">1</span><span class="ct-848433">)</span><span class="ct-763743"> both slide-to-left</span><span class="ct-848433">;
+</span></span><span class="line" line="29"><span class="ct-848433">}
+</span></span><span class="line" line="30"><span>
+</span></span><span class="line" line="31"><span class="ct-763743">::view-transition-new(root) </span><span class="ct-848433">{
+</span></span><span class="line" line="32"><span class="ct-763743">  </span><span class="ct-335843">animation</span><span class="ct-848433">:</span><span class="ct-763743"> </span><span class="ct-118763">310ms</span><span class="ct-763743"> </span><span class="ct-488862">cubic-bezier</span><span class="ct-848433">(</span><span class="ct-118763">0</span><span class="ct-848433">,</span><span class="ct-763743"> </span><span class="ct-118763">0</span><span class="ct-848433">,</span><span class="ct-763743"> </span><span class="ct-118763">0.2</span><span class="ct-848433">,</span><span class="ct-763743"> </span><span class="ct-118763">1</span><span class="ct-848433">)</span><span class="ct-763743"> </span><span class="ct-118763">190ms</span><span class="ct-763743"> both fade-in</span><span class="ct-848433">,
+</span></span><span class="line" line="33"><span class="ct-763743">  </span><span class="ct-118763">500ms</span><span class="ct-763743"> </span><span class="ct-488862">cubic-bezier</span><span class="ct-848433">(</span><span class="ct-118763">0.4</span><span class="ct-848433">,</span><span class="ct-763743"> </span><span class="ct-118763">0</span><span class="ct-848433">,</span><span class="ct-763743"> </span><span class="ct-118763">0.2</span><span class="ct-848433">,</span><span class="ct-763743"> </span><span class="ct-118763">1</span><span class="ct-848433">)</span><span class="ct-763743"> both slide-from-right</span><span class="ct-848433">;
+</span></span><span class="line" line="34"><span class="ct-848433">}</span></span></code></pre><v-iframe src="https://codepen.io/preimezm/embed/dywbZyJ?default-tab=html%2Cresult"></v-iframe><h3 id="how-does-it-work-1">How does it work?</h3><p>If you give it a <code>view-transition-name</code> value, it will smoothly transition to the same element before and after the DOM update.</p><ul><li>Headers will remain as they are because there is no pre- or post-DOM update call to smoothly transition them.</li><li>The button will be repositioned up or down after the DOM update, depending on the size of the shape, so it will be moved to provide a smooth transition.</li></ul><p>As mentioned earlier, specifying a <code>view-transition-name</code> value creates a <code>::view-transition-group(some-name)</code> corresponding to that value.
+This makes it possible to implement different effects for different elements because they act as separate overlays.</p><pre><code __ignoreMap=""><span class="line" line="1"><span>::view-transition
+</span></span><span class="line" line="2"><span>├─ ::view-transition-group(root)
+</span></span><span class="line" line="3"><span>│  └─ ::view-transition-image-pair(root)
+</span></span><span class="line" line="4"><span>│     ├─ ::view-transition-old(root)
+</span></span><span class="line" line="5"><span>│     └─ ::view-transition-new(root)
+</span></span><span class="line" line="6"><span>├─ ::view-transition-group(header)
+</span></span><span class="line" line="7"><span>│  └─ ::view-transition-image-pair(header)
+</span></span><span class="line" line="8"><span>│     ├─ ::view-transition-old(header)
+</span></span><span class="line" line="9"><span>│     └─ ::view-transition-new(header)
+</span></span><span class="line" line="10"><span>└─ ::view-transition-group(activator)
+</span></span><span class="line" line="11"><span>   └─ ::view-transition-image-pair(activator)
+</span></span><span class="line" line="12"><span>      ├─ ::view-transition-old(activator)
+</span></span><span class="line" line="13"><span>      └─ ::view-transition-new(activator)</span></span></code></pre><p>The <code>view-transition-name</code> value must be unique, and if there are duplicate values within a single page, the transition effect will be ignored.
+You can also give shapes a unique <code>view-transition-name</code> value and see what happens.</p><hr><p>This is a quick overview of the View Transition API.
+In the next post, we'll apply the View Transition API to an MPA rendered with Express + Handlebars to implement a page transition effect.</p><h2 id="reference">Reference</h2><ul><li><a href="https://developer.chrome.com/docs/web-platform/view-transitions/" rel="nofollow">Smooth and simple transitions with the View Transitions API</a></li><li><a href="https://developer.mozilla.org/en-US/docs/Web/API/View_Transitions_API" rel="nofollow">View Transitions API</a></li></ul><style>.ct-297524{color:#9C3EDA;}
+.ct-763743{color:#90A4AE;}
+.ct-848433{color:#39ADB5;}
+.ct-488862{color:#6182B8;}
+.ct-423675{color:#91B859;}
+.ct-742507{color:#E53935;}
+.ct-848434{color:#39ADB5;font-style:italic;}
+.ct-763744{color:#90A4AE;font-style:italic;}
+.ct-269037{color:#E2931D;}
+.ct-335843{color:#8796B0;}
+.ct-118763{color:#F76D47;}</style>]]></content:encoded>
+            <enclosure url="https://besfir.github.io/_ipx/q_100/https://wbwsloxpaolxwerwiupa.supabase.co/storage/v1/object/public/blog-asset/images/4fd50611-288c-4052-aeab-f8b4b0e297e9.webp" length="0" type="image/webp"/>
+        </item>
+        <item>
+            <title><![CDATA[서버사이드 랜더링에도 페이지 전환 효과를? View Transition에 대해서 알아보자.]]></title>
+            <link>https://besfir.github.io/ko/category/dev/2023/view-transition-basic</link>
+            <guid>https://besfir.github.io/ko/category/dev/2023/view-transition-basic</guid>
+            <pubDate>Wed, 16 Aug 2023 17:19:00 GMT</pubDate>
+            <description><![CDATA[Chrome 111 버전에는 흥미로운 기능인 "View Transition API"가 추가되었다. 이번 글에서는 View Transition API에 대해 알아보도록 하겠다. View Transition API는 무엇인가? View Transition API는 서...]]></description>
+            <content:encoded><![CDATA[<p>Chrome 111 버전부터 흥미로운 기능인 "View Transition API"가 추가되었다.
+이번 글에서는 View Transition API에 대해 알아보도록 하겠다.</p><h2 id="view-transition-api는-무엇인가">View Transition API는 무엇인가?</h2><p>View Transition API는 서로 다른 DOM 상태 간에 애니메이션 트랜지션을 간편하게 생성할 수 있는 동시에 DOM 콘텐츠를 한 번에 업데이트하는 기능을 제공한다.
+어디에 사용할 수 있는지 몇가지 예시를 확인해보자.</p><v-youtube id="odqzE2o2SsI" title="정렬 애니메이션"></v-youtube><p>사용자 상호작용으로 요소의 순서가 바뀌는 경우, 바뀐 요소의 식별이 어려울수도 있다.
+이때, 바뀐 순서에 맞춰 정렬 애니메이션이 발생한다면 사용자로 하여금 순서를 변경했다는 것을 쉽게 인지시킬 수 있다.
+위 데모 영상은 draggable 요소에 View Transition API를 적용해서 재정렬을 쉽게 인지할 수 있도록 했다.</p><v-youtube id="5nVLhHNDvpc" title="서버사이드 랜더링에 페이지 전환 효과"></v-youtube><p>백엔드 프레임워크를 활용한 SSR은 MPA로서, SPA와 비교하면 페이지 전환 애니메이션 효과를 구현하는데 훨씬 공수가 많이 든다.
+하지만 View Transition API를 활용하면 페이지 전환 효과를 비교적 쉽게 구현할 수 있다.
+위 데모 영상은 Express + Handlebars에 View Transition API를 적용해서 페이지 전환 효과를 구현했으며, 페이지가 전환되어도 동영상은 끊기지 않고 재생된다.</p><h2 id="실습해보자">실습해보자</h2><v-alert><p>💡 아직 실험적 기능 단계이기 때문에 크로미움 엔진 기반 브라우저인 크롬, 엣지, 오페라에서만 동작한다.</p></v-alert><p>실습을 위해서 버튼을 클릭하면 도형의 형태가 토글되는 간단한 예제를 만들었다.
+이 예제를 기반으로 코드를 추가하며 사용법을 간단히 알아보겠다.</p><v-iframe src="https://codepen.io/preimezm/embed/KKbPqbN?default-tab=html%2Cresult"></v-iframe><h2 id="view-transition-적용">View Transition 적용</h2><p>기본 사용 방법은 정말 간단하다.
+그저  <code>startViewTransition()</code> 안에서 DOM을 업데이트 하면 바로 트랜지션이 적용된다.</p><pre><code __ignoreMap=""><span class="line" line="1"><span class="ct-297524">const</span><span class="ct-763743"> shape </span><span class="ct-848433">=</span><span class="ct-763743"> document</span><span class="ct-848433">.</span><span class="ct-488862">getElementById</span><span class="ct-763743">(</span><span class="ct-848433">'</span><span class="ct-423675">shape</span><span class="ct-848433">'</span><span class="ct-763743">)
+</span></span><span class="line highlight" line="2"><span class="ct-763743">shape</span><span class="ct-848433">.</span><span class="ct-488862">addEventListener</span><span class="ct-763743">(</span><span class="ct-848433">'</span><span class="ct-423675">click</span><span class="ct-848433">'</span><span class="ct-848433">,</span><span class="ct-763743"> </span><span class="ct-848433">()</span><span class="ct-763743"> </span><span class="ct-297524">=></span><span class="ct-763743"> document</span><span class="ct-848433">.</span><span class="ct-488862">startViewTransition</span><span class="ct-763743">(handleClick))
+</span></span><span class="line" line="3"><span>
+</span></span><span class="line" line="4"><span class="ct-297524">function</span><span class="ct-763743"> </span><span class="ct-488862">handleClick</span><span class="ct-848433">()</span><span class="ct-763743"> </span><span class="ct-848433">{
+</span></span><span class="line" line="5"><span class="ct-742507">  </span><span class="ct-763743">shape</span><span class="ct-848433">.</span><span class="ct-763743">classList</span><span class="ct-848433">.</span><span class="ct-488862">toggle</span><span class="ct-742507">(</span><span class="ct-848433">'</span><span class="ct-423675">active</span><span class="ct-848433">'</span><span class="ct-742507">)
+</span></span><span class="line" line="6"><span class="ct-848433">}</span></span></code></pre><p>기존에는 클릭시 직접 <code>updateDOM()</code>을 호출하던 것을 View Transition API를 통해 업데이트 하도록 변경했다.
+버튼을 클릭 해보면, 기본 트랜지션 효과인 cross-fade 효과가 적용되는 것을 볼 수 있다.</p><v-iframe src="https://codepen.io/preimezm/embed/yLGBodR?default-tab=html%2Cresult"></v-iframe><h3 id="어떻게-동작하는걸까">어떻게 동작하는걸까?</h3><p>View Transition API는 동작 과정을 간단히 아래의 단계로 표현할 수 있다.</p><ol><li><code>startViewTransition()</code>이 호출되면 API는 현재 페이지의 스크린샷을 찍는다.</li><li><code>startViewTransition()</code>에 넘긴 콜백이 호출되어 DOM이 변경된다.</li><li>변경된 페이지의 새로운 상태를 live representation으로 캡쳐한다.</li><li>다음의 구조로 pseudo-element 트리를 구성한다.</li></ol><pre><code __ignoreMap=""><span class="line" line="1"><span>::view-transition
+</span></span><span class="line" line="2"><span>└─ ::view-transition-group(root)
+</span></span><span class="line" line="3"><span>   └─ ::view-transition-image-pair(root)
+</span></span><span class="line" line="4"><span>      ├─ ::view-transition-old(root)
+</span></span><span class="line" line="5"><span>      └─ ::view-transition-new(root)</span></span></code></pre><ul><li><code>::view-transition</code>은 모든 View Transition pseudo-element 오버레이를 포함하는 최상위 pseudo-element이다.<ul><li>CSS 속성 <code>view-transition-name</code>을 추가하면, 해당 이름의 <code>::view-transition-group(some-name)</code> 오버레이가 생성된다.</li></ul></li><li><code>::view-transition-old(root)</code>은 <code>1</code>에서 작업한 이전 페이지의 스크린샷이며, <code>::view-transition-new(root)</code>은 <code>3</code>에서 캡쳐한 live representation이다.<ul><li>이 두가지 모두 <code>&#x3C;img></code> 또는 <code>&#x3C;video></code>와 비슷한 콘텐츠로 랜더링되므로 <code>object-fit</code>이나 <code>object-position</code>과 같은 속성으로 스타일을 지정할 수 있다.</li></ul></li></ul><ol start="5"><li><code>::view-transition-old(root)</code>과 <code>::view-transition-new(root)</code>에는 기본 효과인 cross-fade가 적용되서 부드럽게 전환된다.</li></ol><h3 id="커스텀-트랜지션">커스텀 트랜지션</h3><p>이번에는 기본 트랜지션을 원하는 다른 효과로 바꿔보자.
+업데이트 전의 요소들이 왼쪽으로 fade out 되면서 사라지고, 업데이트 후의 요소들이 오른쪽으로부터 fade in 되면서 나타나는 효과를 적용해보겠다.</p><pre><code __ignoreMap=""><span class="line" line="1"><span class="ct-848434">@keyframes</span><span class="ct-763743"> </span><span class="ct-763744">fade-in</span><span class="ct-763743"> </span><span class="ct-848433">{
+</span></span><span class="line" line="2"><span class="ct-763743">  </span><span class="ct-269037">from</span><span class="ct-763743"> </span><span class="ct-848433">{</span><span class="ct-763743"> </span><span class="ct-335843">opacity</span><span class="ct-848433">:</span><span class="ct-763743"> </span><span class="ct-118763">0</span><span class="ct-848433">;</span><span class="ct-763743"> </span><span class="ct-848433">}
+</span></span><span class="line" line="3"><span class="ct-848433">}
+</span></span><span class="line" line="4"><span>
+</span></span><span class="line" line="5"><span class="ct-848434">@keyframes</span><span class="ct-763743"> </span><span class="ct-763744">fade-out</span><span class="ct-763743"> </span><span class="ct-848433">{
+</span></span><span class="line" line="6"><span class="ct-763743">  </span><span class="ct-269037">to</span><span class="ct-763743"> </span><span class="ct-848433">{</span><span class="ct-763743"> </span><span class="ct-335843">opacity</span><span class="ct-848433">:</span><span class="ct-763743"> </span><span class="ct-118763">0</span><span class="ct-848433">;</span><span class="ct-763743"> </span><span class="ct-848433">}
+</span></span><span class="line" line="7"><span class="ct-848433">}
+</span></span><span class="line" line="8"><span>
+</span></span><span class="line" line="9"><span class="ct-848434">@keyframes</span><span class="ct-763743"> </span><span class="ct-763744">slide-from-right</span><span class="ct-763743"> </span><span class="ct-848433">{
+</span></span><span class="line" line="10"><span class="ct-763743">  </span><span class="ct-269037">from</span><span class="ct-763743"> </span><span class="ct-848433">{</span><span class="ct-763743"> </span><span class="ct-335843">transform</span><span class="ct-848433">:</span><span class="ct-763743"> </span><span class="ct-488862">translateX</span><span class="ct-848433">(</span><span class="ct-118763">50px</span><span class="ct-848433">);</span><span class="ct-763743"> </span><span class="ct-848433">}
+</span></span><span class="line" line="11"><span class="ct-848433">}
+</span></span><span class="line" line="12"><span>
+</span></span><span class="line" line="13"><span class="ct-848434">@keyframes</span><span class="ct-763743"> </span><span class="ct-763744">slide-to-left</span><span class="ct-763743"> </span><span class="ct-848433">{
+</span></span><span class="line" line="14"><span class="ct-763743">  </span><span class="ct-269037">to</span><span class="ct-763743"> </span><span class="ct-848433">{</span><span class="ct-763743"> </span><span class="ct-335843">transform</span><span class="ct-848433">:</span><span class="ct-763743"> </span><span class="ct-488862">translateX</span><span class="ct-848433">(</span><span class="ct-118763">-50px</span><span class="ct-848433">);</span><span class="ct-763743"> </span><span class="ct-848433">}
+</span></span><span class="line" line="15"><span class="ct-848433">}
+</span></span><span class="line" line="16"><span>
+</span></span><span class="line" line="17"><span class="ct-763743">::view-transition-old(root) </span><span class="ct-848433">{
+</span></span><span class="line" line="18"><span class="ct-763743">  </span><span class="ct-335843">animation</span><span class="ct-848433">:</span><span class="ct-763743"> </span><span class="ct-118763">190ms</span><span class="ct-763743"> </span><span class="ct-488862">cubic-bezier</span><span class="ct-848433">(</span><span class="ct-118763">0.4</span><span class="ct-848433">,</span><span class="ct-763743"> </span><span class="ct-118763">0</span><span class="ct-848433">,</span><span class="ct-763743"> </span><span class="ct-118763">1</span><span class="ct-848433">,</span><span class="ct-763743"> </span><span class="ct-118763">1</span><span class="ct-848433">)</span><span class="ct-763743"> both fade-out</span><span class="ct-848433">,
+</span></span><span class="line" line="19"><span class="ct-763743">    </span><span class="ct-118763">500ms</span><span class="ct-763743"> </span><span class="ct-488862">cubic-bezier</span><span class="ct-848433">(</span><span class="ct-118763">0.4</span><span class="ct-848433">,</span><span class="ct-763743"> </span><span class="ct-118763">0</span><span class="ct-848433">,</span><span class="ct-763743"> </span><span class="ct-118763">0.2</span><span class="ct-848433">,</span><span class="ct-763743"> </span><span class="ct-118763">1</span><span class="ct-848433">)</span><span class="ct-763743"> both slide-to-left</span><span class="ct-848433">;
+</span></span><span class="line" line="20"><span class="ct-848433">}
+</span></span><span class="line" line="21"><span>
+</span></span><span class="line" line="22"><span class="ct-763743">::view-transition-new(root) </span><span class="ct-848433">{
+</span></span><span class="line" line="23"><span class="ct-763743">  </span><span class="ct-335843">animation</span><span class="ct-848433">:</span><span class="ct-763743"> </span><span class="ct-118763">310ms</span><span class="ct-763743"> </span><span class="ct-488862">cubic-bezier</span><span class="ct-848433">(</span><span class="ct-118763">0</span><span class="ct-848433">,</span><span class="ct-763743"> </span><span class="ct-118763">0</span><span class="ct-848433">,</span><span class="ct-763743"> </span><span class="ct-118763">0.2</span><span class="ct-848433">,</span><span class="ct-763743"> </span><span class="ct-118763">1</span><span class="ct-848433">)</span><span class="ct-763743"> </span><span class="ct-118763">190ms</span><span class="ct-763743"> both fade-in</span><span class="ct-848433">,
+</span></span><span class="line" line="24"><span class="ct-763743">    </span><span class="ct-118763">500ms</span><span class="ct-763743"> </span><span class="ct-488862">cubic-bezier</span><span class="ct-848433">(</span><span class="ct-118763">0.4</span><span class="ct-848433">,</span><span class="ct-763743"> </span><span class="ct-118763">0</span><span class="ct-848433">,</span><span class="ct-763743"> </span><span class="ct-118763">0.2</span><span class="ct-848433">,</span><span class="ct-763743"> </span><span class="ct-118763">1</span><span class="ct-848433">)</span><span class="ct-763743"> both slide-from-right</span><span class="ct-848433">;
+</span></span><span class="line" line="25"><span class="ct-848433">}</span></span></code></pre><v-iframe src="https://codepen.io/preimezm/embed/poqzWJx?default-tab=html%2Cresult"></v-iframe><p>이전에는 티가 나지 않았지만, 결과를 확인해보니 헤더에도 트랜지션 효과가 적용된 것을 알 수 있다.
+웹 페이지 이동을 한다고 생각해보면 헤더에도 트랜지션 효과가 적용되는 것은 다소 어색하다.</p><h3 id="요소별-각기-다른-효과">요소별 각기 다른 효과</h3><p>이전의 예제에서 어색한 부분을 지적했는데, 이를 바탕으로 두 가지 요구사항을 만들어서 그에 맞춰 수정해보겠다.</p><ul><li>DOM 업데이트 전/후 헤더는 변화가 없기 때문에 트랜지션을 적용하고 싶지 않다.</li><li>도형의 크기가 변화함에 따라 버튼이 자연스럽게 이동하도록 만들고 싶다.</li></ul><pre><code __ignoreMap=""><span class="line highlight" line="1"><span class="ct-269037">header</span><span class="ct-848433">{
+</span></span><span class="line highlight" line="2"><span class="ct-763743">  view-transition-name</span><span class="ct-848433">:</span><span class="ct-763743"> header</span><span class="ct-848433">;
+</span></span><span class="line highlight" line="3"><span class="ct-848433">}
+</span></span><span class="line highlight" line="4"><span>
+</span></span><span class="line highlight" line="5"><span class="ct-848433">#</span><span class="ct-118763">activator</span><span class="ct-848433">{
+</span></span><span class="line highlight" line="6"><span class="ct-763743">  view-transition-name</span><span class="ct-848433">:</span><span class="ct-763743"> activator</span><span class="ct-848433">;
+</span></span><span class="line highlight" line="7"><span class="ct-848433">}
+</span></span><span class="line" line="8"><span>
+</span></span><span class="line" line="9"><span>
+</span></span><span class="line" line="10"><span class="ct-848434">@keyframes</span><span class="ct-763743"> </span><span class="ct-763744">fade-in</span><span class="ct-763743"> </span><span class="ct-848433">{
+</span></span><span class="line" line="11"><span class="ct-763743">  </span><span class="ct-269037">from</span><span class="ct-763743"> </span><span class="ct-848433">{</span><span class="ct-763743"> </span><span class="ct-335843">opacity</span><span class="ct-848433">:</span><span class="ct-763743"> </span><span class="ct-118763">0</span><span class="ct-848433">;</span><span class="ct-763743"> </span><span class="ct-848433">}
+</span></span><span class="line" line="12"><span class="ct-848433">}
+</span></span><span class="line" line="13"><span>
+</span></span><span class="line" line="14"><span class="ct-848434">@keyframes</span><span class="ct-763743"> </span><span class="ct-763744">fade-out</span><span class="ct-763743"> </span><span class="ct-848433">{
+</span></span><span class="line" line="15"><span class="ct-763743">  </span><span class="ct-269037">to</span><span class="ct-763743"> </span><span class="ct-848433">{</span><span class="ct-763743"> </span><span class="ct-335843">opacity</span><span class="ct-848433">:</span><span class="ct-763743"> </span><span class="ct-118763">0</span><span class="ct-848433">;</span><span class="ct-763743"> </span><span class="ct-848433">}
+</span></span><span class="line" line="16"><span class="ct-848433">}
+</span></span><span class="line" line="17"><span>
+</span></span><span class="line" line="18"><span class="ct-848434">@keyframes</span><span class="ct-763743"> </span><span class="ct-763744">slide-from-right</span><span class="ct-763743"> </span><span class="ct-848433">{
+</span></span><span class="line" line="19"><span class="ct-763743">  </span><span class="ct-269037">from</span><span class="ct-763743"> </span><span class="ct-848433">{</span><span class="ct-763743"> </span><span class="ct-335843">transform</span><span class="ct-848433">:</span><span class="ct-763743"> </span><span class="ct-488862">translateX</span><span class="ct-848433">(</span><span class="ct-118763">50px</span><span class="ct-848433">);</span><span class="ct-763743"> </span><span class="ct-848433">}
+</span></span><span class="line" line="20"><span class="ct-848433">}
+</span></span><span class="line" line="21"><span>
+</span></span><span class="line" line="22"><span class="ct-848434">@keyframes</span><span class="ct-763743"> </span><span class="ct-763744">slide-to-left</span><span class="ct-763743"> </span><span class="ct-848433">{
+</span></span><span class="line" line="23"><span class="ct-763743">  </span><span class="ct-269037">to</span><span class="ct-763743"> </span><span class="ct-848433">{</span><span class="ct-763743"> </span><span class="ct-335843">transform</span><span class="ct-848433">:</span><span class="ct-763743"> </span><span class="ct-488862">translateX</span><span class="ct-848433">(</span><span class="ct-118763">-50px</span><span class="ct-848433">);</span><span class="ct-763743"> </span><span class="ct-848433">}
+</span></span><span class="line" line="24"><span class="ct-848433">}
+</span></span><span class="line" line="25"><span>
+</span></span><span class="line" line="26"><span class="ct-763743">::view-transition-old(root) </span><span class="ct-848433">{
+</span></span><span class="line" line="27"><span class="ct-763743">  </span><span class="ct-335843">animation</span><span class="ct-848433">:</span><span class="ct-763743"> </span><span class="ct-118763">190ms</span><span class="ct-763743"> </span><span class="ct-488862">cubic-bezier</span><span class="ct-848433">(</span><span class="ct-118763">0.4</span><span class="ct-848433">,</span><span class="ct-763743"> </span><span class="ct-118763">0</span><span class="ct-848433">,</span><span class="ct-763743"> </span><span class="ct-118763">1</span><span class="ct-848433">,</span><span class="ct-763743"> </span><span class="ct-118763">1</span><span class="ct-848433">)</span><span class="ct-763743"> both fade-out</span><span class="ct-848433">,
+</span></span><span class="line" line="28"><span class="ct-763743">  </span><span class="ct-118763">500ms</span><span class="ct-763743"> </span><span class="ct-488862">cubic-bezier</span><span class="ct-848433">(</span><span class="ct-118763">0.4</span><span class="ct-848433">,</span><span class="ct-763743"> </span><span class="ct-118763">0</span><span class="ct-848433">,</span><span class="ct-763743"> </span><span class="ct-118763">0.2</span><span class="ct-848433">,</span><span class="ct-763743"> </span><span class="ct-118763">1</span><span class="ct-848433">)</span><span class="ct-763743"> both slide-to-left</span><span class="ct-848433">;
+</span></span><span class="line" line="29"><span class="ct-848433">}
+</span></span><span class="line" line="30"><span>
+</span></span><span class="line" line="31"><span class="ct-763743">::view-transition-new(root) </span><span class="ct-848433">{
+</span></span><span class="line" line="32"><span class="ct-763743">  </span><span class="ct-335843">animation</span><span class="ct-848433">:</span><span class="ct-763743"> </span><span class="ct-118763">310ms</span><span class="ct-763743"> </span><span class="ct-488862">cubic-bezier</span><span class="ct-848433">(</span><span class="ct-118763">0</span><span class="ct-848433">,</span><span class="ct-763743"> </span><span class="ct-118763">0</span><span class="ct-848433">,</span><span class="ct-763743"> </span><span class="ct-118763">0.2</span><span class="ct-848433">,</span><span class="ct-763743"> </span><span class="ct-118763">1</span><span class="ct-848433">)</span><span class="ct-763743"> </span><span class="ct-118763">190ms</span><span class="ct-763743"> both fade-in</span><span class="ct-848433">,
+</span></span><span class="line" line="33"><span class="ct-763743">  </span><span class="ct-118763">500ms</span><span class="ct-763743"> </span><span class="ct-488862">cubic-bezier</span><span class="ct-848433">(</span><span class="ct-118763">0.4</span><span class="ct-848433">,</span><span class="ct-763743"> </span><span class="ct-118763">0</span><span class="ct-848433">,</span><span class="ct-763743"> </span><span class="ct-118763">0.2</span><span class="ct-848433">,</span><span class="ct-763743"> </span><span class="ct-118763">1</span><span class="ct-848433">)</span><span class="ct-763743"> both slide-from-right</span><span class="ct-848433">;
+</span></span><span class="line" line="34"><span class="ct-848433">}</span></span></code></pre><v-iframe src="https://codepen.io/preimezm/embed/dywbZyJ?default-tab=html%2Cresult"></v-iframe><h3 id="어떻게-작동하는걸까">어떻게 작동하는걸까?</h3><p><code>view-transition-name</code> 값을 주게 되면, DOM 업데이트 전/후 이 값이 같은 요소로 부드럽게 전환된다.</p><ul><li>헤더는 DOM 업데이트 전/후 전화가 없기 때문에 부드럽게 전환될만한 효과가 없으므로 그대로 유지된다.</li><li>버튼은 DOM 업데이트 후에 도형의 크기에 따라 위치가 위 또는 아래로 바뀐다. 따라서 부드러운 전환을 위해 이동하게 된다.</li></ul><p>앞서 언급한 것처럼 <code>view-transition-name</code> 값을 지정하면 그 값에 해당하는 <code>::view-transition-group(some-name)</code>이 생성된다.
+따라서 별도의 오버레이로 작동되기 때문에 각기 다른 효과를 구현할 수 있게 되는 것이다.</p><pre><code __ignoreMap=""><span class="line" line="1"><span>::view-transition
+</span></span><span class="line" line="2"><span>├─ ::view-transition-group(root)
+</span></span><span class="line" line="3"><span>│  └─ ::view-transition-image-pair(root)
+</span></span><span class="line" line="4"><span>│     ├─ ::view-transition-old(root)
+</span></span><span class="line" line="5"><span>│     └─ ::view-transition-new(root)
+</span></span><span class="line" line="6"><span>├─ ::view-transition-group(header)
+</span></span><span class="line" line="7"><span>│  └─ ::view-transition-image-pair(header)
+</span></span><span class="line" line="8"><span>│     ├─ ::view-transition-old(header)
+</span></span><span class="line" line="9"><span>│     └─ ::view-transition-new(header)
+</span></span><span class="line" line="10"><span>└─ ::view-transition-group(activator)
+</span></span><span class="line" line="11"><span>   └─ ::view-transition-image-pair(activator)
+</span></span><span class="line" line="12"><span>      ├─ ::view-transition-old(activator)
+</span></span><span class="line" line="13"><span>      └─ ::view-transition-new(activator)</span></span></code></pre><p><code>view-transition-name</code> 값은 고유해야 하며, 만약 한 폐이지 안에 중복되는 값이 있다면 트랜지션 효과는 무시된다.
+도형에도 고유한 <code>view-transition-name</code> 값을 줘서 어떻게 변하는지 확인해보는 것도 좋다.</p><hr><p>여기까지 View Transition API에 대해서 간단히 알아봤다.
+다음 글에서는 Express + Handlebars로 랜더링한 MPA에 View Transition API를 적용해서 페이지 전환 효과를 구현해보겠다.</p><h2 id="reference">Reference</h2><ul><li><a href="https://developer.chrome.com/docs/web-platform/view-transitions/" rel="nofollow">Smooth and simple transitions with the View Transitions API</a></li><li><a href="https://developer.mozilla.org/en-US/docs/Web/API/View_Transitions_API" rel="nofollow">View Transitions API</a></li></ul><style>.ct-297524{color:#9C3EDA;}
+.ct-763743{color:#90A4AE;}
+.ct-848433{color:#39ADB5;}
+.ct-488862{color:#6182B8;}
+.ct-423675{color:#91B859;}
+.ct-742507{color:#E53935;}
+.ct-848434{color:#39ADB5;font-style:italic;}
+.ct-763744{color:#90A4AE;font-style:italic;}
+.ct-269037{color:#E2931D;}
+.ct-335843{color:#8796B0;}
+.ct-118763{color:#F76D47;}</style>]]></content:encoded>
+            <enclosure url="https://besfir.github.io/_ipx/q_100/https://wbwsloxpaolxwerwiupa.supabase.co/storage/v1/object/public/blog-asset/images/4fd50611-288c-4052-aeab-f8b4b0e297e9.webp" length="0" type="image/webp"/>
+        </item>
         <item>
             <title><![CDATA[Let's learn about the relational database]]></title>
             <link>https://besfir.github.io/category/dev/2023/relational-database</link>
@@ -71,6 +293,7 @@ A primary key cannot have a value of NULL.</li></ul><v-alert><p>💡 An entity i
 The FK and PK must have the same domain, and the FK cannot have a value that is not in the PK.</li></ul><table><thead><tr><th align="center">id</th><th align="center">name</th><th align="center">team_id</th><th align="center">back_number</th><th align="center">birth_date</th></tr></thead><tbody><tr><td align="center">player_01</td><td align="center">Walter</td><td align="center"><span style="color:#ef4444;">team_02</span></td><td align="center">...</td><td align="center">...</td></tr><tr><td align="center">player_02</td><td align="center">Adam</td><td align="center"><span style="color:#ef4444;">team_02</span></td><td align="center">...</td><td align="center">...</td></tr></tbody></table><table><thead><tr><th align="center">id</th><th align="center">name</th><th align="center">manager</th></tr></thead><tbody><tr><td align="center">team_01</td><td align="center">Team Besfir</td><td align="center">besfir</td></tr></tbody></table><h2 id="reference">Reference</h2><ul><li><a href="https://youtu.be/aL0XXc1yGPs" rel="nofollow">Youtube easyCode(쉬운코드) - Database</a></li></ul><style>.ct-848433{color:#39ADB5;}
 .ct-118763{color:#F76D47;}
 .ct-763743{color:#90A4AE;}</style>]]></content:encoded>
+            <enclosure url="https://besfir.github.io/_ipx/q_100/https://wbwsloxpaolxwerwiupa.supabase.co/storage/v1/object/public/blog-asset/images/270c7091-c3be-49d3-b047-b15f09224799.webp" length="0" type="image/webp"/>
         </item>
         <item>
             <title><![CDATA[관계형 데이터베이스에 대해 알아보자]]></title>
@@ -128,6 +351,7 @@ key 또는 minimal superkey로 불리기도 한다.</p><ul><li>PLAYER(id, name, 
 FK(foreign key의 약자)와 PK와 도메인이 같아야 하고 PK에 없는 값을 FK가 값으로 가질 수 없다.</li></ul><table><thead><tr><th align="center">id</th><th align="center">name</th><th align="center">team_id</th><th align="center">back_number</th><th align="center">birth_date</th></tr></thead><tbody><tr><td align="center">player_01</td><td align="center">Walter</td><td align="center"><span style="color:#ef4444;">team_02</span></td><td align="center">...</td><td align="center">...</td></tr><tr><td align="center">player_02</td><td align="center">Adam</td><td align="center"><span style="color:#ef4444;">team_02</span></td><td align="center">...</td><td align="center">...</td></tr></tbody></table><table><thead><tr><th align="center">id</th><th align="center">name</th><th align="center">manager</th></tr></thead><tbody><tr><td align="center">team_01</td><td align="center">Team Besfir</td><td align="center">besfir</td></tr></tbody></table><h2 id="reference">Reference</h2><ul><li><a href="https://youtu.be/aL0XXc1yGPs" rel="nofollow">Youtube 쉬운코드 - 데이터베이스</a></li></ul><style>.ct-848433{color:#39ADB5;}
 .ct-118763{color:#F76D47;}
 .ct-763743{color:#90A4AE;}</style>]]></content:encoded>
+            <enclosure url="https://besfir.github.io/_ipx/q_100/https://wbwsloxpaolxwerwiupa.supabase.co/storage/v1/object/public/blog-asset/images/270c7091-c3be-49d3-b047-b15f09224799.webp" length="0" type="image/webp"/>
         </item>
         <item>
             <title><![CDATA[Let's learn about the basic concepts of database part 2]]></title>
@@ -195,6 +419,7 @@ A prime example of this is the relational data language - SQL.</p><h2 id="refere
 .ct-118763{color:#F76D47;}
 .ct-848433{color:#39ADB5;}
 .ct-763744{color:#90A4AE;font-style:italic;}</style>]]></content:encoded>
+            <enclosure url="https://besfir.github.io/_ipx/q_100/https://wbwsloxpaolxwerwiupa.supabase.co/storage/v1/object/public/blog-asset/images/2aa06ad5-1488-4be9-aeb4-97814840f8c1.webp" length="0" type="image/webp"/>
         </item>
         <item>
             <title><![CDATA[데이터베이스 기본 개념에 대해 알아보자 2편]]></title>
@@ -264,6 +489,7 @@ A prime example of this is the relational data language - SQL.</p><h2 id="refere
 .ct-118763{color:#F76D47;}
 .ct-848433{color:#39ADB5;}
 .ct-763744{color:#90A4AE;font-style:italic;}</style>]]></content:encoded>
+            <enclosure url="https://besfir.github.io/_ipx/q_100/https://wbwsloxpaolxwerwiupa.supabase.co/storage/v1/object/public/blog-asset/images/2aa06ad5-1488-4be9-aeb4-97814840f8c1.webp" length="0" type="image/webp"/>
         </item>
         <item>
             <title><![CDATA[Let's learn about the basic concepts of database part 1]]></title>
@@ -299,6 +525,7 @@ In a table, row means one data and is called a tuple or record.
 In addition, a column is called an attribute and refers to the characteristics of a tuple or record.</p><h3 id="physical-or-low-level-data-models">physical (or low-level) data models</h3><p>It provides a way to describe how data is stored in files on a computer.
 In other words, it is a data model that expresses elements such as data format, data orderings, and access paths to represent the database structure as closely as possible to the way data is actually stored on the storage device.
 Among them, access paths are structures to speed up data retrieval, such as indexes.</p><h2 id="reference">Reference</h2><ul><li><a href="https://youtu.be/aL0XXc1yGPs" rel="nofollow">Youtube 쉬운코드(Easy code) - Databases</a></li></ul>]]></content:encoded>
+            <enclosure url="https://besfir.github.io/_ipx/q_100/https://wbwsloxpaolxwerwiupa.supabase.co/storage/v1/object/public/blog-asset/images/2aa06ad5-1488-4be9-aeb4-97814840f8c1.webp" length="0" type="image/webp"/>
         </item>
         <item>
             <title><![CDATA[데이터베이스 기본 개념에 대해 알아보자 1편]]></title>
@@ -334,6 +561,7 @@ Among them, access paths are structures to speed up data retrieval, such as inde
 또한 열(column)은 속성(attribute)이라 부르며 튜플 또는 레코드의 특성을 의미한다.</p><h3 id="physical-or-low-level-data-models">physical (or low-level) data models</h3><p>컴퓨터에 데이터가 어떻게 파일 형태로 저장되는지를 설명할 수 있는 방법을 제공한다.
 바꿔 말해, data format, data orderings, access path 등의 요소를 표현하여, 데이터베이스 구조를 실제 저장 장치에 데이터가 저장되는 방식에 최대한 가깝게 표현하는 데이터 모델입니다.
 이 중 access path는 데이터 검색을 빠르게 하기 위한 구조체로, 대표적으로 인덱스가 이에 해당된다.</p><h2 id="reference">Reference</h2><ul><li><a href="https://youtu.be/aL0XXc1yGPs" rel="nofollow">Youtube 쉬운코드 - 데이터베이스</a></li></ul>]]></content:encoded>
+            <enclosure url="https://besfir.github.io/_ipx/q_100/https://wbwsloxpaolxwerwiupa.supabase.co/storage/v1/object/public/blog-asset/images/2aa06ad5-1488-4be9-aeb4-97814840f8c1.webp" length="0" type="image/webp"/>
         </item>
         <item>
             <title><![CDATA[Let's find out Spring Boot Test with JUnit part3]]></title>
@@ -411,6 +639,7 @@ It can also be combined with <code>@SpringBootTest</code>.</p><h3 id="replace">r
 .ct-848434{color:#39ADB5;font-style:italic;}
 .ct-118763{color:#F76D47;}
 .ct-423675{color:#91B859;}</style>]]></content:encoded>
+            <enclosure url="https://besfir.github.io/_ipx/q_100/https://wbwsloxpaolxwerwiupa.supabase.co/storage/v1/object/public/blog-asset/images/f4fa63f3-2dda-4b55-8093-5fb7bfc57d52.webp" length="0" type="image/webp"/>
         </item>
         <item>
             <title><![CDATA[JUnit을 이용한 스프링 부트 테스트를 알아보자 3편]]></title>
@@ -489,6 +718,7 @@ It can also be combined with <code>@SpringBootTest</code>.</p><h3 id="replace">r
 .ct-848434{color:#39ADB5;font-style:italic;}
 .ct-118763{color:#F76D47;}
 .ct-423675{color:#91B859;}</style>]]></content:encoded>
+            <enclosure url="https://besfir.github.io/_ipx/q_100/https://wbwsloxpaolxwerwiupa.supabase.co/storage/v1/object/public/blog-asset/images/f4fa63f3-2dda-4b55-8093-5fb7bfc57d52.webp" length="0" type="image/webp"/>
         </item>
         <item>
             <title><![CDATA[Let's find out Spring Boot Test with JUnit part2]]></title>
@@ -750,6 +980,7 @@ However, it does not support configuring a mock environment, so if you want to u
 .ct-848434{color:#39ADB5;font-style:italic;}
 .ct-763744{color:#90A4AE;font-style:italic;}
 .ct-118763{color:#F76D47;}</style>]]></content:encoded>
+            <enclosure url="https://besfir.github.io/_ipx/q_100/https://wbwsloxpaolxwerwiupa.supabase.co/storage/v1/object/public/blog-asset/images/f4fa63f3-2dda-4b55-8093-5fb7bfc57d52.webp" length="0" type="image/webp"/>
         </item>
         <item>
             <title><![CDATA[JUnit을 이용한 스프링 부트 테스트를 알아보자 2편]]></title>
@@ -1010,6 +1241,7 @@ Spring Context를 사용하기 때문에 스프링 프레임워크의 기능을 
 .ct-848434{color:#39ADB5;font-style:italic;}
 .ct-763744{color:#90A4AE;font-style:italic;}
 .ct-118763{color:#F76D47;}</style>]]></content:encoded>
+            <enclosure url="https://besfir.github.io/_ipx/q_100/https://wbwsloxpaolxwerwiupa.supabase.co/storage/v1/object/public/blog-asset/images/f4fa63f3-2dda-4b55-8093-5fb7bfc57d52.webp" length="0" type="image/webp"/>
         </item>
         <item>
             <title><![CDATA[Journey to get Google Adsense approval on a blog made with Nuxt]]></title>
@@ -1037,6 +1269,7 @@ Up to here, I was nervous about something, so I asked to index all the posts I'v
 In the meantime, I have registered all my writings on the Google Search Console.</p><p>I got an email at a similar time when I received the review results before, and it was an email saying that advertisements could finally be posted.
 I went into the setting to post an advertisement with excitement, but I couldn't figure out how to set it up because I was using an automatic advertisement.
 I pressed this and that for about a day and tested what looked best on my blog, and now I was able to configure a layout that I liked to some extent.</p><p>In this way, I thought I would no longer have to suffer from Google AdSense, but I am trying to figure out what the problem is because I found a problem where advertisements are not posted intermittently.</p>]]></content:encoded>
+            <enclosure url="https://besfir.github.io/_ipx/q_100/https://wbwsloxpaolxwerwiupa.supabase.co/storage/v1/object/public/blog-asset/images/ac85d9a8-3fa1-482f-8020-2fafa4db2bd8.webp" length="0" type="image/webp"/>
         </item>
         <item>
             <title><![CDATA[Nuxt로 만든 블로그에 Google AdSense 승인을 받기 위한 여정]]></title>
@@ -1064,6 +1297,7 @@ Nuxt에 애드센스 모듈을 설치하고 관련 설정도 할 생각에 싱�
 그사이 작성한 글도 모두 구글 서치 콘솔에 등록했다.</p><p>이전에 심사 결과를 받았던 때와 비슷한 시각에 메일이 왔고, 드디어 광고가 게재 가능하다는 내용이었다.
 들뜬 마음에 광고를 게재하기 위해 설정을 들어갔는데, 여태 자동광고를 사용하느라 설정을 어떻게 해야 하는지 도저히 감이 잡히지 않았다.
 하루 정도 이것저것 눌러서 블로그에 어떤 것이 제일 잘 어울리는지 테스트를 했고, 현재는 어느정도 납득 가능한 정도의 레이아웃 구성했다.</p><p>이렇게 해서, 구글 애드센스와 관련된 고통을 더는 겪지 않아도 될 줄 알았으나 간헐적으로 광고가 게재되지 않는 문제가 발견되서 무슨 문제인지 파악하는 중에 있다.</p>]]></content:encoded>
+            <enclosure url="https://besfir.github.io/_ipx/q_100/https://wbwsloxpaolxwerwiupa.supabase.co/storage/v1/object/public/blog-asset/images/ac85d9a8-3fa1-482f-8020-2fafa4db2bd8.webp" length="0" type="image/webp"/>
         </item>
         <item>
             <title><![CDATA[Let's find out Spring Boot Test with JUnit part1]]></title>
@@ -1426,6 +1660,7 @@ We have overridden the bean in anticipation of <code>foo = foo test</code>, but 
 .ct-488862{color:#6182B8;}
 .ct-848434{color:#39ADB5;font-style:italic;}
 .ct-118763{color:#F76D47;}</style>]]></content:encoded>
+            <enclosure url="https://besfir.github.io/_ipx/q_100/https://wbwsloxpaolxwerwiupa.supabase.co/storage/v1/object/public/blog-asset/images/f4fa63f3-2dda-4b55-8093-5fb7bfc57d52.webp" length="0" type="image/webp"/>
         </item>
         <item>
             <title><![CDATA[JUnit을 이용한 스프링 부트 테스트를 알아보자 1편]]></title>
@@ -1787,6 +2022,7 @@ We have overridden the bean in anticipation of <code>foo = foo test</code>, but 
 .ct-488862{color:#6182B8;}
 .ct-848434{color:#39ADB5;font-style:italic;}
 .ct-118763{color:#F76D47;}</style>]]></content:encoded>
+            <enclosure url="https://besfir.github.io/_ipx/q_100/https://wbwsloxpaolxwerwiupa.supabase.co/storage/v1/object/public/blog-asset/images/f4fa63f3-2dda-4b55-8093-5fb7bfc57d52.webp" length="0" type="image/webp"/>
         </item>
         <item>
             <title><![CDATA[I went to my friend's factory for the first time.]]></title>
@@ -1808,6 +2044,7 @@ I sat down and exchanged glances with <code>Friend A</code> and regretted, 'I sh
 Therefore, we talked a lot for a long time, and contrary to our concerns, we had a very fun time and even told us to sleep a day, so I sincerely agonized.
 However, we returned to Seoul before it was too late because <code>Friend A</code> promised to pick up his wife.</p><v-prose-img alt="the way back to Seoul" src="https://wbwsloxpaolxwerwiupa.supabase.co/storage/v1/object/public/blog-asset/images/0250fe50-036e-46dd-bf9d-9c5799317375.webp"></v-prose-img><p>On my way back. As it started to get dark and cool, I felt emotional, so I came back talking about the old days with my <code>Friend A</code>.
 It was fun and nice to think of when I was young, but on the other hand, I felt strange when I realized that I was getting older.</p>]]></content:encoded>
+            <enclosure url="https://besfir.github.io/_ipx/q_100/https://wbwsloxpaolxwerwiupa.supabase.co/storage/v1/object/public/blog-asset/images/9b1716e1-35ea-4a01-bd13-f04a862ebec9.webp" length="0" type="image/webp"/>
         </item>
         <item>
             <title><![CDATA[친구의 공장에 처음으로 가봤다.]]></title>
@@ -1829,6 +2066,7 @@ It was fun and nice to think of when I was young, but on the other hand, I felt 
 따라서 긴 시간 많은 얘기를 나눴는데, 우려와는 반대로 굉장히 재밌게 시간을 보냈고 하루 자고 가라고까지 말씀하셔서 진심으로 고민했다.
 하지만 <code>친구A</code>가 아내를 데리러 가기로 약속을 했기 때문에 시간이 더 늦어지기 전에 서울로 돌아오게 되었다.</p><v-prose-img alt="서울로 돌아가는 길" src="https://wbwsloxpaolxwerwiupa.supabase.co/storage/v1/object/public/blog-asset/images/0250fe50-036e-46dd-bf9d-9c5799317375.webp"></v-prose-img><p>돌아가는 길. 날이 어두워지기 시작하고 선선해지니 감성적인 기분이 들어서 <code>친구A</code>와 옛날 이야기를 잔뜩 하면서 돌아왔다.
 어릴적 생각이 나서 즐겁고 좋았지만, 한편으로는 나이를 먹어간다는 걸 실감하게 돼서 오묘한 기분이 드는 귀가길 이었다.</p>]]></content:encoded>
+            <enclosure url="https://besfir.github.io/_ipx/q_100/https://wbwsloxpaolxwerwiupa.supabase.co/storage/v1/object/public/blog-asset/images/9b1716e1-35ea-4a01-bd13-f04a862ebec9.webp" length="0" type="image/webp"/>
         </item>
         <item>
             <title><![CDATA[Create Mocks with Mockito in Unit Test]]></title>
@@ -2239,6 +2477,7 @@ It is used to prevent side effects as the actual function is called when stubbin
 .ct-118763{color:#F76D47;}
 .ct-423675{color:#91B859;}
 .ct-763744{color:#90A4AE;font-style:italic;}</style>]]></content:encoded>
+            <enclosure url="https://besfir.github.io/_ipx/q_100/https://wbwsloxpaolxwerwiupa.supabase.co/storage/v1/object/public/blog-asset/images/75e50009-4e9d-4c8c-9461-c6a6687d596e.webp" length="0" type="image/webp"/>
         </item>
         <item>
             <title><![CDATA[단위 테스트에서 Mockito를 사용하여 Mock 객체 만들기]]></title>
@@ -2649,6 +2888,7 @@ Stubbing 할 때 실제 기능이 호출되면서 예상치 못한 동작, 즉 �
 .ct-118763{color:#F76D47;}
 .ct-423675{color:#91B859;}
 .ct-763744{color:#90A4AE;font-style:italic;}</style>]]></content:encoded>
+            <enclosure url="https://besfir.github.io/_ipx/q_100/https://wbwsloxpaolxwerwiupa.supabase.co/storage/v1/object/public/blog-asset/images/75e50009-4e9d-4c8c-9461-c6a6687d596e.webp" length="0" type="image/webp"/>
         </item>
         <item>
             <title><![CDATA[Let's find out about Spies, Stubs, Fakes, and Mocks.]]></title>
@@ -2864,6 +3104,7 @@ In fact, this is not unusual, and MSDN Magazine uses the following figure as an 
 .ct-269037{color:#E2931D;}
 .ct-763744{color:#90A4AE;font-style:italic;}
 .ct-423675{color:#91B859;}</style>]]></content:encoded>
+            <enclosure url="https://besfir.github.io/_ipx/q_100/https://wbwsloxpaolxwerwiupa.supabase.co/storage/v1/object/public/blog-asset/images/2593ac4d-ecc1-4640-ba64-55a3bd9f5733.webp" length="0" type="image/webp"/>
         </item>
         <item>
             <title><![CDATA[Spy, Stub, Fake 그리고 Mock에 대해서 알아보자.]]></title>
@@ -3083,6 +3324,7 @@ HashMap을 이용해서 인메모리 DB를 구현한 것을 예로 들 수 있�
 .ct-269037{color:#E2931D;}
 .ct-763744{color:#90A4AE;font-style:italic;}
 .ct-423675{color:#91B859;}</style>]]></content:encoded>
+            <enclosure url="https://besfir.github.io/_ipx/q_100/https://wbwsloxpaolxwerwiupa.supabase.co/storage/v1/object/public/blog-asset/images/2593ac4d-ecc1-4640-ba64-55a3bd9f5733.webp" length="0" type="image/webp"/>
         </item>
         <item>
             <title><![CDATA[Starting unit test with JUnit 5 Part 2]]></title>
@@ -3461,6 +3703,7 @@ The supported placeholders are as follows.</p><table><thead><tr><th>Placeholder<
 .ct-423675{color:#91B859;}
 .ct-763744{color:#90A4AE;font-style:italic;}
 .ct-848434{color:#39ADB5;font-style:italic;}</style>]]></content:encoded>
+            <enclosure url="https://besfir.github.io/_ipx/q_100/https://wbwsloxpaolxwerwiupa.supabase.co/storage/v1/object/public/blog-asset/images/b1b45e58-142e-4005-853f-e65727e64279.webp" length="0" type="image/webp"/>
         </item>
         <item>
             <title><![CDATA[JUnit 5로 단위 테스트 시작하기 2편]]></title>
@@ -3840,6 +4083,7 @@ Java 16 이후로는 중첩 클래스에 정적 메소드를 선언할 수 있�
 .ct-423675{color:#91B859;}
 .ct-763744{color:#90A4AE;font-style:italic;}
 .ct-848434{color:#39ADB5;font-style:italic;}</style>]]></content:encoded>
+            <enclosure url="https://besfir.github.io/_ipx/q_100/https://wbwsloxpaolxwerwiupa.supabase.co/storage/v1/object/public/blog-asset/images/b1b45e58-142e-4005-853f-e65727e64279.webp" length="0" type="image/webp"/>
         </item>
         <item>
             <title><![CDATA[Starting unit test with JUnit 5 Part 1]]></title>
@@ -4202,6 +4446,7 @@ Therefore, the following cases may occur.</p><pre><code __ignoreMap=""><span cla
 .ct-488862{color:#6182B8;}
 .ct-423675{color:#91B859;}
 .ct-848434{color:#39ADB5;font-style:italic;}</style>]]></content:encoded>
+            <enclosure url="https://besfir.github.io/_ipx/q_100/https://wbwsloxpaolxwerwiupa.supabase.co/storage/v1/object/public/blog-asset/images/b1b45e58-142e-4005-853f-e65727e64279.webp" length="0" type="image/webp"/>
         </item>
         <item>
             <title><![CDATA[JUnit 5로 단위 테스트 시작하기 1편]]></title>
@@ -4566,6 +4811,7 @@ Therefore, the following cases may occur.</p><pre><code __ignoreMap=""><span cla
 .ct-488862{color:#6182B8;}
 .ct-423675{color:#91B859;}
 .ct-848434{color:#39ADB5;font-style:italic;}</style>]]></content:encoded>
+            <enclosure url="https://besfir.github.io/_ipx/q_100/https://wbwsloxpaolxwerwiupa.supabase.co/storage/v1/object/public/blog-asset/images/b1b45e58-142e-4005-853f-e65727e64279.webp" length="0" type="image/webp"/>
         </item>
         <item>
             <title><![CDATA[Extracting a list of time zones with Java +Kotlin]]></title>
@@ -4653,6 +4899,7 @@ Therefore, it was used to unify the form.</p><pre><code __ignoreMap=""><span cla
 .ct-848434{color:#39ADB5;font-style:italic;}
 .ct-423675{color:#91B859;}
 .ct-742507{color:#E53935;}</style>]]></content:encoded>
+            <enclosure url="https://besfir.github.io/_ipx/q_100/https://wbwsloxpaolxwerwiupa.supabase.co/storage/v1/object/public/blog-asset/images/b36aa62b-1c24-4097-9768-db04dc0d8726.webp" length="0" type="image/webp"/>
         </item>
         <item>
             <title><![CDATA[자바로 타임존 목록 추출하기 +코틀린]]></title>
@@ -4739,6 +4986,7 @@ time 패키지 쪽에서 존 목록을 불러오는 API를 봤던 기억이 나�
 .ct-848434{color:#39ADB5;font-style:italic;}
 .ct-423675{color:#91B859;}
 .ct-742507{color:#E53935;}</style>]]></content:encoded>
+            <enclosure url="https://besfir.github.io/_ipx/q_100/https://wbwsloxpaolxwerwiupa.supabase.co/storage/v1/object/public/blog-asset/images/b36aa62b-1c24-4097-9768-db04dc0d8726.webp" length="0" type="image/webp"/>
         </item>
         <item>
             <title><![CDATA[I bought my first perfume in my life.]]></title>
@@ -4762,6 +5010,7 @@ I don't know if it's because of its name, but it also smells like grass forest a
 It seems similar to Forest, but it feels different, but it's smoky and cool, but it feels a little less pungent.</p><p>Personally, it smelled like smoked ham because it smelled a little salty with a smoky smell.
 I think it feels especially so when I put the blotter off my hand and smell it.</p><table><thead><tr><th align="center">Main note</th><th align="center">Seasons</th><th align="center">Longevity/Sillage</th><th align="center">Price(USD)</th></tr></thead><tbody><tr><td align="center">Patchouli, Bitter Orange, Campari, Guaiac</td><td align="center">Fall, Winter</td><td align="center">Middle</td><td align="center">1.0oz / 69.00 <br> 3.3oz / 155.00</td></tr></tbody></table><hr><p>I organized my thoughts like above and decided to buy Sangtal Cream and Gaiac Flower.
 When I searched, there was a non-fiction store in the duty-free shop, so my younger sister bought it for me on her way back from traveling abroad.</p><p><strong>I got my first perfume of my life.</strong></p><v-prose-img alt="Santal Cream &#x26; Gaiac Flower given as a gift" src="https://wbwsloxpaolxwerwiupa.supabase.co/storage/v1/object/public/blog-asset/images/16282a80-1d76-4289-a232-041b0d8169b1.webp"></v-prose-img>]]></content:encoded>
+            <enclosure url="https://besfir.github.io/_ipx/q_100/https://wbwsloxpaolxwerwiupa.supabase.co/storage/v1/object/public/blog-asset/images/d275b526-1669-481f-8720-149b126a7f54.webp" length="0" type="image/webp"/>
         </item>
         <item>
             <title><![CDATA[내 생에 첫 향수를 구매해봤다.]]></title>
@@ -4785,6 +5034,7 @@ When I searched, there was a non-fiction store in the duty-free shop, so my youn
 포 레스트와 비슷한거 같으면서도 다르게 느껴지는데, 스모키 하면서 시원한데 조금 덜 알싸한 것 같이 느껴진다.</p><p>개인적으로 스모키한 냄새와 함께 살짝 짠내가 나는듯 해서 마치 훈제 햄 냄새 같은 느낌을 받았다.
 시향지를 손에서 놓고 손 냄새를 맡으면 특히 더 그렇게 느껴지는 것 같다.</p><table><thead><tr><th align="center">주요노트</th><th align="center">계절감</th><th align="center">지속/발향력</th><th align="center">가격(원)</th></tr></thead><tbody><tr><td align="center">가이악우드, 패출리, 비터 오렌지, 캄파리</td><td align="center">가을, 겨울</td><td align="center">중</td><td align="center">30ml / 69,000 <br> 100ml / 158,000</td></tr></tbody></table><hr><p>위처럼 생각을 정리하고 상탈 크림과 가이악 플라워를 구매하기로 결정했다.
 검색해보니 면세점에 논픽션 매장이 입점해 있어서, 동생이 외국에 여행을 다녀오는 길에 사다줬다.</p><p><strong>내 생에 첫 향수를 갖게 됐다.</strong></p><v-prose-img alt="샹탈 크림 &#x26; 가이악 플라워 향수" src="https://wbwsloxpaolxwerwiupa.supabase.co/storage/v1/object/public/blog-asset/images/16282a80-1d76-4289-a232-041b0d8169b1.webp"></v-prose-img>]]></content:encoded>
+            <enclosure url="https://besfir.github.io/_ipx/q_100/https://wbwsloxpaolxwerwiupa.supabase.co/storage/v1/object/public/blog-asset/images/d275b526-1669-481f-8720-149b126a7f54.webp" length="0" type="image/webp"/>
         </item>
         <item>
             <title><![CDATA[Let's find out about requestAnimationFrame()]]></title>
@@ -4850,6 +5100,7 @@ It was processed at once to the extent that I wondered if this was right.</p><v-
 .ct-848434{color:#39ADB5;font-style:italic;}
 .ct-128726{color:#FF5370;}
 .ct-118763{color:#F76D47;}</style>]]></content:encoded>
+            <enclosure url="https://besfir.github.io/_ipx/q_100/https://wbwsloxpaolxwerwiupa.supabase.co/storage/v1/object/public/blog-asset/images/d037121a-a7cf-471c-a511-999f7f146450.webp" length="0" type="image/webp"/>
         </item>
         <item>
             <title><![CDATA[requestAnimationFrame()에 대해 알아보자]]></title>
@@ -4915,6 +5166,7 @@ layout 단계부터 재수행하는 것을 통해 알 수 있듯이 변경한 �
 .ct-848434{color:#39ADB5;font-style:italic;}
 .ct-128726{color:#FF5370;}
 .ct-118763{color:#F76D47;}</style>]]></content:encoded>
+            <enclosure url="https://besfir.github.io/_ipx/q_100/https://wbwsloxpaolxwerwiupa.supabase.co/storage/v1/object/public/blog-asset/images/d037121a-a7cf-471c-a511-999f7f146450.webp" length="0" type="image/webp"/>
         </item>
         <item>
             <title><![CDATA[How to measure execution time in Java/Kotlin. +Spring Framework]]></title>
@@ -5033,6 +5285,7 @@ As can be seen from the description, this method was created from the beginning 
 .ct-742507{color:#E53935;}
 .ct-269037{color:#E2931D;}
 .ct-848434{color:#39ADB5;font-style:italic;}</style>]]></content:encoded>
+            <enclosure url="https://besfir.github.io/_ipx/q_100/https://wbwsloxpaolxwerwiupa.supabase.co/storage/v1/object/public/blog-asset/images/be425970-5e3d-4d85-bc1e-bb312fbb4c13.webp" length="0" type="image/webp"/>
         </item>
         <item>
             <title><![CDATA[Java/Kotlin에서 실행 시간 측정 하기. +Spring Framework]]></title>
@@ -5150,6 +5403,7 @@ As can be seen from the description, this method was created from the beginning 
 .ct-742507{color:#E53935;}
 .ct-269037{color:#E2931D;}
 .ct-848434{color:#39ADB5;font-style:italic;}</style>]]></content:encoded>
+            <enclosure url="https://besfir.github.io/_ipx/q_100/https://wbwsloxpaolxwerwiupa.supabase.co/storage/v1/object/public/blog-asset/images/be425970-5e3d-4d85-bc1e-bb312fbb4c13.webp" length="0" type="image/webp"/>
         </item>
         <item>
             <title><![CDATA[How to git clone only a specific directory]]></title>
@@ -5188,6 +5442,7 @@ If you have 5 files that you ticked when you completed the final stage, it is co
 .ct-423675{color:#91B859;}
 .ct-488862{color:#6182B8;}
 .ct-848433{color:#39ADB5;}</style>]]></content:encoded>
+            <enclosure url="https://besfir.github.io/_ipx/q_100/https://wbwsloxpaolxwerwiupa.supabase.co/storage/v1/object/public/blog-asset/images/63da5951-e9e1-450e-8120-25e46c0be356.webp" length="0" type="image/webp"/>
         </item>
         <item>
             <title><![CDATA[Git 특정 디렉터리만 clone 하기]]></title>
@@ -5226,6 +5481,7 @@ If you have 5 files that you ticked when you completed the final stage, it is co
 .ct-423675{color:#91B859;}
 .ct-488862{color:#6182B8;}
 .ct-848433{color:#39ADB5;}</style>]]></content:encoded>
+            <enclosure url="https://besfir.github.io/_ipx/q_100/https://wbwsloxpaolxwerwiupa.supabase.co/storage/v1/object/public/blog-asset/images/63da5951-e9e1-450e-8120-25e46c0be356.webp" length="0" type="image/webp"/>
         </item>
         <item>
             <title><![CDATA[Setting the timezone within Alpine linux docker image]]></title>
@@ -5267,6 +5523,7 @@ If you use multi-stage buildings, you can focus only on the resources you need.<
 .ct-118763{color:#F76D47;}
 .ct-488862{color:#6182B8;}
 .ct-848433{color:#39ADB5;}</style>]]></content:encoded>
+            <enclosure url="https://besfir.github.io/_ipx/q_100/https://wbwsloxpaolxwerwiupa.supabase.co/storage/v1/object/public/blog-asset/images/2965c28d-b68a-4ca2-b69f-e298192043ac.webp" length="0" type="image/webp"/>
         </item>
         <item>
             <title><![CDATA[알파인 리눅스 도커 이미지를 이용할때 타임존 설정하기]]></title>
@@ -5308,6 +5565,7 @@ If you use multi-stage buildings, you can focus only on the resources you need.<
 .ct-118763{color:#F76D47;}
 .ct-488862{color:#6182B8;}
 .ct-848433{color:#39ADB5;}</style>]]></content:encoded>
+            <enclosure url="https://besfir.github.io/_ipx/q_100/https://wbwsloxpaolxwerwiupa.supabase.co/storage/v1/object/public/blog-asset/images/2965c28d-b68a-4ca2-b69f-e298192043ac.webp" length="0" type="image/webp"/>
         </item>
         <item>
             <title><![CDATA[Make animated number counter with Vanilla js. +Vue3]]></title>
@@ -5355,6 +5613,7 @@ In my case, since i set Korean as the browser language, the number format displa
 .ct-742507{color:#E53935;}
 .ct-848434{color:#39ADB5;font-style:italic;}
 .ct-488862{color:#6182B8;}</style>]]></content:encoded>
+            <enclosure url="https://besfir.github.io/_ipx/q_100/https://wbwsloxpaolxwerwiupa.supabase.co/storage/v1/object/public/blog-asset/images/7befa050-553a-4ae0-a8dd-88367007c0fb.webp" length="0" type="image/webp"/>
         </item>
         <item>
             <title><![CDATA[Vanilla js로 숫자 카운트 애니메이션 만들기. +Vue3]]></title>
@@ -5401,6 +5660,7 @@ In my case, since i set Korean as the browser language, the number format displa
 .ct-742507{color:#E53935;}
 .ct-848434{color:#39ADB5;font-style:italic;}
 .ct-488862{color:#6182B8;}</style>]]></content:encoded>
+            <enclosure url="https://besfir.github.io/_ipx/q_100/https://wbwsloxpaolxwerwiupa.supabase.co/storage/v1/object/public/blog-asset/images/7befa050-553a-4ae0-a8dd-88367007c0fb.webp" length="0" type="image/webp"/>
         </item>
         <item>
             <title><![CDATA[Can i use PM2 inside Docker?]]></title>
@@ -5417,6 +5677,7 @@ This can be replaced to some extent in Docker, where clustering can be replaced 
 Therefore, it would be better to choose and use it according to the situation rather than using more computing resources by using both.</p><h2 id="conclusion">Conclusion</h2><p>If you check the PM2 document <a href="https://pm2.keymetrics.io/docs/usage/docker-pm2-nodejs/" rel="nofollow">Docker Integration</a>, it will be possible to implement it.
 However, based on the above, I found that using PM2 inside Docker does more harm than good.
 Therefore, I will conclude that <strong>it is better not to use PM2 inside Docker</strong> and conclude the article.</p><h2 id="reference">Reference</h2><ul><li><a href="https://stackoverflow.com/questions/51191378/what-is-the-point-of-using-pm2-and-docker-together" rel="nofollow">what is the point of using pm2 and docker together?</a></li><li><a href="https://www.docker.com/blog/keep-nodejs-rockin-in-docker/" rel="nofollow">Top 4 Tactics To Keep Node.js Rockin’ in Docker</a></li><li><a href="https://docs.docker.com/config/containers/multi-service_container/" rel="nofollow">Run multiple services in a container</a></li></ul>]]></content:encoded>
+            <enclosure url="https://besfir.github.io/_ipx/q_100/https://wbwsloxpaolxwerwiupa.supabase.co/storage/v1/object/public/blog-asset/images/ae8bac97-8438-4261-a322-f03bd84de1fe.webp" length="0" type="image/webp"/>
         </item>
         <item>
             <title><![CDATA[Docker 내부에서 PM2를 사용할 수 있을까?]]></title>
@@ -5433,6 +5694,7 @@ Therefore, I will conclude that <strong>it is better not to use PM2 inside Docke
 따라서 굳이 둘다 사용해서 컴퓨팅 자원을 더 사용하는 것보다, 상황에 따라 선택해서 사용하는 것이 더 좋을 것이다.</p><h2 id="결론">결론</h2><p>PM2 문서 <a href="https://pm2.keymetrics.io/docs/usage/docker-pm2-nodejs/" rel="nofollow">Docker Integration</a>을 확인해보면 구현은 가능할 것으로 보인다.
 그러나 위에 기술한 것을 근거로 도커 내부에서 PM2를 사용하는 것은 득보다 실이 더 많다는 것을 알게 되었다.
 따라서 <strong>도커 내부에서 PM2를 사용하지 않는 것이 좋다</strong>고 결론을 내고 글을 마무리 짓도록 하겠다.</p><h2 id="reference">Reference</h2><ul><li><a href="https://stackoverflow.com/questions/51191378/what-is-the-point-of-using-pm2-and-docker-together" rel="nofollow">what is the point of using pm2 and docker together?</a></li><li><a href="https://www.docker.com/blog/keep-nodejs-rockin-in-docker/" rel="nofollow">Top 4 Tactics To Keep Node.js Rockin’ in Docker</a></li><li><a href="https://docs.docker.com/config/containers/multi-service_container/" rel="nofollow">Run multiple services in a container</a></li></ul>]]></content:encoded>
+            <enclosure url="https://besfir.github.io/_ipx/q_100/https://wbwsloxpaolxwerwiupa.supabase.co/storage/v1/object/public/blog-asset/images/ae8bac97-8438-4261-a322-f03bd84de1fe.webp" length="0" type="image/webp"/>
         </item>
         <item>
             <title><![CDATA[Why is it recommended to run only one process in a container?]]></title>
@@ -5450,6 +5712,7 @@ Therefore, it may be necessary to perform tasks that would not have been necessa
 Therefore, additional settings should be made to enable identification, or logs should be redirected to a separate file.</li><li><strong>Monitoring</strong>: Docker performs container health checks with PID 1.
 Therefore, if PID 1 is normal when driving multi-services, it may not be detected even if the rest of the process is terminated due to an error.</li></ul><h2 id="conclusion">Conclusion</h2><p>It was confirmed that it was better to configure a container with a single service due to the advantages of single service per container + the disadvantages of multi-service  per container.
 One thing that I regret is that I wanted to check what would happen if there was an exception, but I couldn't record it because there were no significant examples. If I find a good example later, I will add it.</p><h2 id="reference">Reference</h2><ul><li><a href="https://www.tutorialworks.com/containers-single-or-multiple-processes/" rel="nofollow">Containers: one single process, or multiple processes?</a></li><li><a href="https://twitter.com/testdrivenio/status/1447958997785399300" rel="nofollow">Docker best practice:</a></li><li><a href="https://devops.stackexchange.com/questions/447/why-it-is-recommended-to-run-only-one-process-in-a-container" rel="nofollow">Why it is recommended to run only one process in a container?</a></li></ul>]]></content:encoded>
+            <enclosure url="https://besfir.github.io/_ipx/q_100/https://wbwsloxpaolxwerwiupa.supabase.co/storage/v1/object/public/blog-asset/images/4cd3d3ce-3b28-4867-b6d1-49c05b17f7a9.webp" length="0" type="image/webp"/>
         </item>
         <item>
             <title><![CDATA[컨테이너에서 하나의 서비스만 실행하는 것이 권장되는 이유는 무엇일까?]]></title>
@@ -5467,6 +5730,7 @@ One thing that I regret is that I wanted to check what would happen if there was
 따라서 식별이 가능하도록 추가 설정을 하거나, 로그를 별도 파일로 리다이렉션 해야한다.</li><li><strong>모니터링</strong>: 도커는 PID 1의 상태로 컨테이너 헬스체크를 한다.
 따라서 여러 서비스 구동시 PID 1이 정상이라면 나머지 프로세스가 오류로 인해 종료돼도 감지하지 못할 수 있다.</li></ul><h2 id="정리">정리</h2><p>하나의 컨테이너에 단일 서비스 구동 장점 + 멀티 서비스 구동 단점으로 인해 단일 서비스로 컨테이너를 구성하는게 더 좋다는 것을 확인할 수 있었다.
 하나 아쉬운 점이 있다면, 예외가 있다면 어떤 경우가 있을지 확인하고 싶었는데 이렇다 할만한 예시가 없어서 기록하지 못한점이다. 추후 좋은 예시를 찾게되면 추가하도록 하겠다.</p><h2 id="reference">Reference</h2><ul><li><a href="https://www.tutorialworks.com/containers-single-or-multiple-processes/" rel="nofollow">Containers: one single process, or multiple processes?</a></li><li><a href="https://twitter.com/testdrivenio/status/1447958997785399300" rel="nofollow">Docker best practice:</a></li><li><a href="https://devops.stackexchange.com/questions/447/why-it-is-recommended-to-run-only-one-process-in-a-container" rel="nofollow">Why it is recommended to run only one process in a container?</a></li></ul>]]></content:encoded>
+            <enclosure url="https://besfir.github.io/_ipx/q_100/https://wbwsloxpaolxwerwiupa.supabase.co/storage/v1/object/public/blog-asset/images/4cd3d3ce-3b28-4867-b6d1-49c05b17f7a9.webp" length="0" type="image/webp"/>
         </item>
         <item>
             <title><![CDATA[Create a custom function similar to timeago.js using Intl RelativeTimeFormat.]]></title>
@@ -5504,6 +5768,7 @@ It can be easily implemented using some libraries.</p><p>However, since it can b
 .ct-488862{color:#6182B8;}
 .ct-423675{color:#91B859;}
 .ct-848434{color:#39ADB5;font-style:italic;}</style>]]></content:encoded>
+            <enclosure url="https://besfir.github.io/_ipx/q_100/https://wbwsloxpaolxwerwiupa.supabase.co/storage/v1/object/public/blog-asset/images/d0904c08-e8b2-4a01-a5b6-c51b6e67d06f.webp" length="0" type="image/webp"/>
         </item>
         <item>
             <title><![CDATA[Intl RelativeTimeFormat으로 timeago.js와 비슷한 커스텀 함수만들기.]]></title>
@@ -5541,6 +5806,7 @@ It can be easily implemented using some libraries.</p><p>However, since it can b
 .ct-488862{color:#6182B8;}
 .ct-423675{color:#91B859;}
 .ct-848434{color:#39ADB5;font-style:italic;}</style>]]></content:encoded>
+            <enclosure url="https://besfir.github.io/_ipx/q_100/https://wbwsloxpaolxwerwiupa.supabase.co/storage/v1/object/public/blog-asset/images/d0904c08-e8b2-4a01-a5b6-c51b6e67d06f.webp" length="0" type="image/webp"/>
         </item>
         <item>
             <title><![CDATA[Troubleshooting the inability to switch to the default locale on the Nuxti18n root path.]]></title>
@@ -5620,6 +5886,7 @@ However, I prefer simpler code if it works the same function, so I decided to ha
 .ct-848434{color:#39ADB5;font-style:italic;}
 .ct-488862{color:#6182B8;}
 .ct-763744{color:#90A4AE;font-style:italic;}</style>]]></content:encoded>
+            <enclosure url="https://besfir.github.io/_ipx/q_100/https://wbwsloxpaolxwerwiupa.supabase.co/storage/v1/object/public/blog-asset/images/d9c8e40c-3b71-488c-9bfb-eac5ed53521c.webp" length="0" type="image/webp"/>
         </item>
         <item>
             <title><![CDATA[Nuxt i18n 루트 경로 상에서 기본 로케일로 전환할 수 없는 문제 트러블 슈팅]]></title>
@@ -5699,6 +5966,7 @@ However, I prefer simpler code if it works the same function, so I decided to ha
 .ct-848434{color:#39ADB5;font-style:italic;}
 .ct-488862{color:#6182B8;}
 .ct-763744{color:#90A4AE;font-style:italic;}</style>]]></content:encoded>
+            <enclosure url="https://besfir.github.io/_ipx/q_100/https://wbwsloxpaolxwerwiupa.supabase.co/storage/v1/object/public/blog-asset/images/d9c8e40c-3b71-488c-9bfb-eac5ed53521c.webp" length="0" type="image/webp"/>
         </item>
     </channel>
 </rss>
