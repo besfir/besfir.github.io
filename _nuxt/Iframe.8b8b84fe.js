@@ -1,0 +1,1 @@
+import{d as s,o as c,c as r}from"./entry.e02ce960.js";const a=["src"],p=s({__name:"Iframe",props:{src:{}},setup(l){return(e,o)=>(c(),r("iframe",{src:e.src,class:"w-full lg:ml-[calc(50%-400px)] lg:w-[800px] h-[500px]",loading:"lazy"},null,8,a))}});export{p as default};
