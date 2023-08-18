@@ -1,0 +1,1 @@
+import{d as s,o as t,c as o,a as _,s as a,_ as r}from"./entry.6d376f1e.js";const c={class:"mb-5 md:mb-6"},d={class:"bg-sky-50 border-l-sky-400 border-l-4 p-3 md:p-4 [&_p]:mb-0 [&_p]:px-0"},n=s({__name:"Alert",setup(l){return(e,p)=>(t(),o("section",c,[_("div",d,[a(e.$slots,"default",{},void 0,!0)])]))}});const i=r(n,[["__scopeId","data-v-e67767e0"]]);export{i as default};
