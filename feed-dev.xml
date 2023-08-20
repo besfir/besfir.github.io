@@ -4,7 +4,7 @@
         <title>Besfir.log</title>
         <link>https://besfir.github.io</link>
         <description>Records Is The Rule Of Memory - Canon(2002)</description>
-        <lastBuildDate>Fri, 18 Aug 2023 05:30:56 GMT</lastBuildDate>
+        <lastBuildDate>Sun, 20 Aug 2023 18:00:54 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
         <image>
@@ -14,6 +14,13 @@
         </image>
         <copyright>All rights reserved since 2023, Besfir</copyright>
         <atom:link href="https://besfir.github.io/feed.xml" rel="self" type="application/rss+xml"/>
+        <item>
+            <title><![CDATA[SQL 기본 개념과 DB 구조를 정의하는 SQL 기본 문법을 알아보자]]></title>
+            <link>https://besfir.github.io/ko/category/dev/2023/sql-and-db-definition/</link>
+            <guid>https://besfir.github.io/ko/category/dev/2023/sql-and-db-definition/</guid>
+            <pubDate>Sun, 20 Aug 2023 18:01:00 GMT</pubDate>
+            <description><![CDATA[SQL Structured Query Language(SQL)은 현업에서 사용되는 관계형 데이터베이스 관리 시스템(RDBMS)의 표준 언어로 DDL + DML + VDL을 합친 종합적인 DBMS 언어라고도 할 수 있다. SQL 주요 용어 주요 용어는 아래와 같지만...SQL Structured Query Language(SQL)은 현업에서 사용되는 관계형 데이터베이스 관리 시스템(RDBMS)의 표준 언어로 DDL + DML + VDL을 합친 종합적인 DBMS 언어라고도 할 수 있다. SQL 주요 용어 주요 용어는 아래와 같지만...SQL Structured Query Language(SQL)은 현업에서 사용되는 관계형 데이터베이스 관리 시스템(RDBMS)의 표준 언어로 DDL + DML + VDL을 합친 종합적인 DBMS 언어라고도 할 수 있다. SQL 주요 용어 주요 용어는 아래와 같지만...]]></description>
+        </item>
         <item>
             <title><![CDATA[서버사이드 랜더링에도 페이지 전환 효과를? View Transition에 대해서 알아보자.]]></title>
             <link>https://besfir.github.io/ko/category/dev/2023/view-transition-basic/</link>
