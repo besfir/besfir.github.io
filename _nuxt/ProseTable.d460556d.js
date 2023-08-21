@@ -1,0 +1,1 @@
+import{_ as o,o as t,c as a,a as e,s as c}from"./entry.bd2ab7b6.js";const r={},l={class:"mb-5 md:mb-6"},n={class:"overflow-x-auto"};function _(s,d){return t(),a("div",l,[e("div",n,[e("table",null,[c(s.$slots,"default")])])])}const i=o(r,[["render",_]]);export{i as default};

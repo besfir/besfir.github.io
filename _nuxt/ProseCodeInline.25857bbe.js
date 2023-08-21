@@ -1,0 +1,1 @@
+import{_ as o,o as s,c as r,s as c}from"./entry.bd2ab7b6.js";const t={},n={class:"break-words"};function a(e,_){return s(),r("code",n,[c(e.$slots,"default")])}const l=o(t,[["render",a]]);export{l as default};
