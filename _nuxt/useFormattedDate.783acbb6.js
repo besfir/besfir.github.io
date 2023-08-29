@@ -1,0 +1,1 @@
+import{N as n}from"./entry.998a5990.js";function o(t,r){const e=n(t)?t.value:t;try{return new Intl.DateTimeFormat(e,{day:"numeric",month:"long",year:"numeric"}).format(r)}catch{return""}}export{o as u};

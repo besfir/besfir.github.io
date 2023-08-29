@@ -1,0 +1,1 @@
+import{_ as e,o as _,h as s}from"./entry.998a5990.js";const o={},r={class:"hr my-5 md:my-prose"};function c(t,n){return _(),s("hr",r)}const d=e(o,[["render",c],["__scopeId","data-v-308951b0"]]);export{d as default};
