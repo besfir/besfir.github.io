@@ -1,1 +1,0 @@
-import{N as n}from"./entry.f49cdf40.js";function o(t,r){const e=n(t)?t.value:t;try{return new Intl.DateTimeFormat(e,{day:"numeric",month:"long",year:"numeric"}).format(r)}catch{return""}}export{o as u};
