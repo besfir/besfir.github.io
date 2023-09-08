@@ -4,7 +4,7 @@
         <title>Besfir.log</title>
         <link>https://besfir.github.io</link>
         <description>Records Is The Rule Of Memory - Canon(2002)</description>
-        <lastBuildDate>Sun, 03 Sep 2023 16:53:16 GMT</lastBuildDate>
+        <lastBuildDate>Fri, 08 Sep 2023 04:10:39 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
         <image>
@@ -14,5 +14,201 @@
         </image>
         <copyright>All rights reserved since 2023, Besfir</copyright>
         <atom:link href="https://besfir.github.io/feed.xml" rel="self" type="application/rss+xml"/>
+        <item>
+            <title><![CDATA[Tailwind CSS Typhography Plugin 사용법 및 커스터마이징]]></title>
+            <link>https://besfir.github.io/ko/blog/2023/09/tailwindcss-typhography-plugin/</link>
+            <guid>https://besfir.github.io/ko/blog/2023/09/tailwindcss-typhography-plugin/</guid>
+            <pubDate>Fri, 08 Sep 2023 04:15:00 GMT</pubDate>
+            <description><![CDATA[@tailwindcss/typhography는 마크다운에서 랜더링 됐거나 CMS에서 가져온 HTML 등 사용자가 직접 Tailwind CSS 클래스를 지정하지 못하는 HTML 요소에 타이포그래피 기본값을 추가하기 위해 사용되는 플러그인이다. 이 플러그인을 사용하지...@tailwindcss/typhography는 마크다운에서 랜더링 됐거나 CMS에서 가져온 HTML 등 사용자가 직접 Tailwind CSS 클래스를 지정하지 못하는 HTML 요소에 타이포그래피 기본값을 추가하기 위해 사용되는 플러그인이다. 이 플러그인을 사용하지...@tailwindcss/typhography는 마크다운에서 랜더링 됐거나 CMS에서 가져온 HTML 등 사용자가 직접 Tailwind CSS 클래스를 지정하지 못하는 HTML 요소에 타이포그래피 기본값을 추가하기 위해 사용되는 플러그인이다. 이 플러그인을 사용하지...]]></description>
+        </item>
+        <item>
+            <title><![CDATA[친구들과의 첫 글램핑에 대한 일기.]]></title>
+            <link>https://besfir.github.io/ko/blog/2023/09/first_time_glamping_with_friends/</link>
+            <guid>https://besfir.github.io/ko/blog/2023/09/first_time_glamping_with_friends/</guid>
+            <pubDate>Sat, 02 Sep 2023 04:15:00 GMT</pubDate>
+            <description><![CDATA[요 근래 몇년동안 몸이 아파서 여러 회사의 입사 및 퇴사를 반복했고, 최근 들어서는 아예 집에 틀어박혀서 개인 프로젝트만 진행했다. 이때에 스스로는 그다지 외롭다거나 답답하다는 느낌을 받지 못했는데, 7월에 복현이의 권유로 포천에서 공장을 운영중인 진환이 집에 갔...요 근래 몇년동안 몸이 아파서 여러 회사의 입사 및 퇴사를 반복했고, 최근 들어서는 아예 집에 틀어박혀서 개인 프로젝트만 진행했다. 이때에 스스로는 그다지 외롭다거나 답답하다는 느낌을 받지 못했는데, 7월에 복현이의 권유로 포천에서 공장을 운영중인 진환이 집에 갔...요 근래 몇년동안 몸이 아파서 여러 회사의 입사 및 퇴사를 반복했고, 최근 들어서는 아예 집에 틀어박혀서 개인 프로젝트만 진행했다. 이때에 스스로는 그다지 외롭다거나 답답하다는 느낌을 받지 못했는데, 7월에 복현이의 권유로 포천에서 공장을 운영중인 진환이 집에 갔...]]></description>
+        </item>
+        <item>
+            <title><![CDATA[SQL로 DB에 데이터 삽입, 수정 그리고 삭제하는 방법을 알아보자.]]></title>
+            <link>https://besfir.github.io/ko/blog/2023/08/lean-insert-update-delete-sql/</link>
+            <guid>https://besfir.github.io/ko/blog/2023/08/lean-insert-update-delete-sql/</guid>
+            <pubDate>Wed, 23 Aug 2023 14:25:00 GMT</pubDate>
+            <description><![CDATA[이번 글에서 사용되는 예제에는 이전 시간에 생성한 department, employee, project, works_on 테이블을 이용한다. 혹시 이전 글을 읽지 않았다면 한 번 읽어보길 바란다. 데이터 추가하기 데이터를 추가하는 SQL 문(statement)을...이번 글에서 사용되는 예제에는 이전 시간에 생성한 department, employee, project, works_on 테이블을 이용한다. 혹시 이전 글을 읽지 않았다면 한 번 읽어보길 바란다. 데이터 추가하기 데이터를 추가하는 SQL 문(statement)을...이번 글에서 사용되는 예제에는 이전 시간에 생성한 department, employee, project, works_on 테이블을 이용한다. 혹시 이전 글을 읽지 않았다면 한 번 읽어보길 바란다. 데이터 추가하기 데이터를 추가하는 SQL 문(statement)을...]]></description>
+        </item>
+        <item>
+            <title><![CDATA[SQL 기본 개념과 DB 구조를 정의하는 SQL 기본 문법을 알아보자]]></title>
+            <link>https://besfir.github.io/ko/blog/2023/08/sql-and-db-definition/</link>
+            <guid>https://besfir.github.io/ko/blog/2023/08/sql-and-db-definition/</guid>
+            <pubDate>Sun, 20 Aug 2023 18:01:00 GMT</pubDate>
+            <description><![CDATA[SQL Structured Query Language(SQL)은 현업에서 사용되는 관계형 데이터베이스 관리 시스템(RDBMS)의 표준 언어로 DDL + DML + VDL을 합친 종합적인 DBMS 언어라고도 할 수 있다. SQL 주요 용어 주요 용어는 아래와 같지만...SQL Structured Query Language(SQL)은 현업에서 사용되는 관계형 데이터베이스 관리 시스템(RDBMS)의 표준 언어로 DDL + DML + VDL을 합친 종합적인 DBMS 언어라고도 할 수 있다. SQL 주요 용어 주요 용어는 아래와 같지만...SQL Structured Query Language(SQL)은 현업에서 사용되는 관계형 데이터베이스 관리 시스템(RDBMS)의 표준 언어로 DDL + DML + VDL을 합친 종합적인 DBMS 언어라고도 할 수 있다. SQL 주요 용어 주요 용어는 아래와 같지만...]]></description>
+        </item>
+        <item>
+            <title><![CDATA[서버사이드 랜더링에도 페이지 전환 효과를? View Transition에 대해서 알아보자.]]></title>
+            <link>https://besfir.github.io/ko/blog/2023/08/view-transition-basic/</link>
+            <guid>https://besfir.github.io/ko/blog/2023/08/view-transition-basic/</guid>
+            <pubDate>Wed, 16 Aug 2023 17:19:00 GMT</pubDate>
+            <description><![CDATA[Chrome 111 버전에는 흥미로운 기능인 "View Transition API"가 추가되었다. 이번 글에서는 View Transition API에 대해 알아보도록 하겠다. View Transition API는 무엇인가? View Transition API는 서...Chrome 111 버전에는 흥미로운 기능인 "View Transition API"가 추가되었다. 이번 글에서는 View Transition API에 대해 알아보도록 하겠다. View Transition API는 무엇인가? View Transition API는 서...Chrome 111 버전에는 흥미로운 기능인 "View Transition API"가 추가되었다. 이번 글에서는 View Transition API에 대해 알아보도록 하겠다. View Transition API는 무엇인가? View Transition API는 서...]]></description>
+        </item>
+        <item>
+            <title><![CDATA[관계형 데이터베이스에 대해 알아보자]]></title>
+            <link>https://besfir.github.io/ko/blog/2023/08/relational-database/</link>
+            <guid>https://besfir.github.io/ko/blog/2023/08/relational-database/</guid>
+            <pubDate>Wed, 02 Aug 2023 15:28:00 GMT</pubDate>
+            <description><![CDATA[이번 글에서는 relation(관계), primary key(기본키), foreign key(외래키), constraints(제약사항) 등을 포함한 관계형 데이터베이스(relational database)의 개념에 대해 알아보겠다. 관계형 데이터베이스의 개념은 수...이번 글에서는 relation(관계), primary key(기본키), foreign key(외래키), constraints(제약사항) 등을 포함한 관계형 데이터베이스(relational database)의 개념에 대해 알아보겠다. 관계형 데이터베이스의 개념은 수...이번 글에서는 relation(관계), primary key(기본키), foreign key(외래키), constraints(제약사항) 등을 포함한 관계형 데이터베이스(relational database)의 개념에 대해 알아보겠다. 관계형 데이터베이스의 개념은 수...]]></description>
+        </item>
+        <item>
+            <title><![CDATA[데이터베이스 기본 개념에 대해 알아보자 2편]]></title>
+            <link>https://besfir.github.io/ko/blog/2023/07/learn-basic-concepts-of-databases-part2/</link>
+            <guid>https://besfir.github.io/ko/blog/2023/07/learn-basic-concepts-of-databases-part2/</guid>
+            <pubDate>Sun, 30 Jul 2023 14:55:00 GMT</pubDate>
+            <description><![CDATA[Database schema 데이터베이스 스키마(schema), 줄여서 스키마는 데이터 모델을 바탕으로 데이터베이스의 구조를 정의하고 표현한 것을 말한다. 스키마는 데이터베이스를 설계할 때 초기에 정해지며, 한 번 정해진 이후에는 자주 바뀌지 않는다.Database schema 데이터베이스 스키마(schema), 줄여서 스키마는 데이터 모델을 바탕으로 데이터베이스의 구조를 정의하고 표현한 것을 말한다. 스키마는 데이터베이스를 설계할 때 초기에 정해지며, 한 번 정해진 이후에는 자주 바뀌지 않는다.Database schema 데이터베이스 스키마(schema), 줄여서 스키마는 데이터 모델을 바탕으로 데이터베이스의 구조를 정의하고 표현한 것을 말한다. 스키마는 데이터베이스를 설계할 때 초기에 정해지며, 한 번 정해진 이후에는 자주 바뀌지 않는다.]]></description>
+        </item>
+        <item>
+            <title><![CDATA[데이터베이스 기본 개념에 대해 알아보자 1편]]></title>
+            <link>https://besfir.github.io/ko/blog/2023/07/learn-basic-concepts-of-databases/</link>
+            <guid>https://besfir.github.io/ko/blog/2023/07/learn-basic-concepts-of-databases/</guid>
+            <pubDate>Thu, 27 Jul 2023 17:01:00 GMT</pubDate>
+            <description><![CDATA[데이터베이스 설계가 너무도 어려워 정리를 하려고 보니, 필자 스스로 데이터베이스 기초를 전혀 모른다는 것을 깨닳았다. 따라서 데이터베이스 설계 시리즈를 작성하기에 앞서, 데이터베이스 시작하기 시리즈에 대해서 정리해보려 한다. 이번 글에서는 데이터베이스에 입문하기...데이터베이스 설계가 너무도 어려워 정리를 하려고 보니, 필자 스스로 데이터베이스 기초를 전혀 모른다는 것을 깨닳았다. 따라서 데이터베이스 설계 시리즈를 작성하기에 앞서, 데이터베이스 시작하기 시리즈에 대해서 정리해보려 한다. 이번 글에서는 데이터베이스에 입문하기...데이터베이스 설계가 너무도 어려워 정리를 하려고 보니, 필자 스스로 데이터베이스 기초를 전혀 모른다는 것을 깨닳았다. 따라서 데이터베이스 설계 시리즈를 작성하기에 앞서, 데이터베이스 시작하기 시리즈에 대해서 정리해보려 한다. 이번 글에서는 데이터베이스에 입문하기...]]></description>
+        </item>
+        <item>
+            <title><![CDATA[JUnit을 이용한 스프링 부트 테스트를 알아보자 3편]]></title>
+            <link>https://besfir.github.io/ko/blog/2023/07/find-out-spring-test-part3/</link>
+            <guid>https://besfir.github.io/ko/blog/2023/07/find-out-spring-test-part3/</guid>
+            <pubDate>Wed, 26 Jul 2023 02:54:00 GMT</pubDate>
+            <description><![CDATA[이번 글에서는 데이터 계층 슬라이스 테스트 어노테이션 중 JPA 테스트를 위한 @DataJpaTest에 대해 살펴보고, 이와 관련된 @AutoConfigureTestDatabase에 대해서도 알아보겠다.이번 글에서는 데이터 계층 슬라이스 테스트 어노테이션 중 JPA 테스트를 위한 @DataJpaTest에 대해 살펴보고, 이와 관련된 @AutoConfigureTestDatabase에 대해서도 알아보겠다.이번 글에서는 데이터 계층 슬라이스 테스트 어노테이션 중 JPA 테스트를 위한 @DataJpaTest에 대해 살펴보고, 이와 관련된 @AutoConfigureTestDatabase에 대해서도 알아보겠다.]]></description>
+        </item>
+        <item>
+            <title><![CDATA[JUnit을 이용한 스프링 부트 테스트를 알아보자 2편]]></title>
+            <link>https://besfir.github.io/ko/blog/2023/07/find-out-spring-test-part2/</link>
+            <guid>https://besfir.github.io/ko/blog/2023/07/find-out-spring-test-part2/</guid>
+            <pubDate>Sun, 23 Jul 2023 14:50:00 GMT</pubDate>
+            <description><![CDATA[이번 글에서는 @WebMvcTest, MockMvc, TestRestTemplate 그리고 WebTestClient에 대해서 알아보겠다. TestRestTemplate와 WebTestClient은 각각 RestTemplate 또는 WebClient와 어떻게 다른지...이번 글에서는 @WebMvcTest, MockMvc, TestRestTemplate 그리고 WebTestClient에 대해서 알아보겠다. TestRestTemplate와 WebTestClient은 각각 RestTemplate 또는 WebClient와 어떻게 다른지...이번 글에서는 @WebMvcTest, MockMvc, TestRestTemplate 그리고 WebTestClient에 대해서 알아보겠다. TestRestTemplate와 WebTestClient은 각각 RestTemplate 또는 WebClient와 어떻게 다른지...]]></description>
+        </item>
+        <item>
+            <title><![CDATA[Nuxt로 만든 블로그에 Google AdSense 승인을 받기 위한 여정]]></title>
+            <link>https://besfir.github.io/ko/blog/2023/07/journey-to-get-google-adsense/</link>
+            <guid>https://besfir.github.io/ko/blog/2023/07/journey-to-get-google-adsense/</guid>
+            <pubDate>Sat, 15 Jul 2023 12:49:00 GMT</pubDate>
+            <description><![CDATA[블로그에 올릴 글을 작성할 의욕을 끌어올리기 위해, 구글 애드센스를 신청했다. 전에 티스토리 블로그에 승인받은 적이 있었는데, 그때는 한 번에 승인받았기 때문에 이토록 어려울 것이라고는 생각하지 못했다. 한 번 심사할 때마다 약 12일가량 소요되어서, 승인됐다는...블로그에 올릴 글을 작성할 의욕을 끌어올리기 위해, 구글 애드센스를 신청했다. 전에 티스토리 블로그에 승인받은 적이 있었는데, 그때는 한 번에 승인받았기 때문에 이토록 어려울 것이라고는 생각하지 못했다. 한 번 심사할 때마다 약 12일가량 소요되어서, 승인됐다는...블로그에 올릴 글을 작성할 의욕을 끌어올리기 위해, 구글 애드센스를 신청했다. 전에 티스토리 블로그에 승인받은 적이 있었는데, 그때는 한 번에 승인받았기 때문에 이토록 어려울 것이라고는 생각하지 못했다. 한 번 심사할 때마다 약 12일가량 소요되어서, 승인됐다는...]]></description>
+        </item>
+        <item>
+            <title><![CDATA[JUnit을 이용한 스프링 부트 테스트를 알아보자 1편]]></title>
+            <link>https://besfir.github.io/ko/blog/2023/07/find-out-spring-test-part1/</link>
+            <guid>https://besfir.github.io/ko/blog/2023/07/find-out-spring-test-part1/</guid>
+            <pubDate>Thu, 13 Jul 2023 15:25:00 GMT</pubDate>
+            <description><![CDATA[이번 글에서는 스프링 부트를 이용해서 테스트할 때 기본적으로 알아야 할 어노테이션과, 알아두면 다른 어노테이션을 이해하는데 도움이 되는 어노테이션을 알아볼 것이다.이번 글에서는 스프링 부트를 이용해서 테스트할 때 기본적으로 알아야 할 어노테이션과, 알아두면 다른 어노테이션을 이해하는데 도움이 되는 어노테이션을 알아볼 것이다.이번 글에서는 스프링 부트를 이용해서 테스트할 때 기본적으로 알아야 할 어노테이션과, 알아두면 다른 어노테이션을 이해하는데 도움이 되는 어노테이션을 알아볼 것이다.]]></description>
+        </item>
+        <item>
+            <title><![CDATA[친구의 공장에 처음으로 가봤다.]]></title>
+            <link>https://besfir.github.io/ko/blog/2023/07/the-first-visit-to-factory-of-my-friend/</link>
+            <guid>https://besfir.github.io/ko/blog/2023/07/the-first-visit-to-factory-of-my-friend/</guid>
+            <pubDate>Sun, 09 Jul 2023 11:59:00 GMT</pubDate>
+            <description><![CDATA[7월 7일 금요일 저녁, 대형 연예 기획사에서 개발자를 하고 있는 친구A에게서 다음날 점심 식사를 하자고 연락이 왔다. 집에 있으면 엄청 나가고 싶은데, 희안하게 막상 외출할 일이 생기니 귀찮아져서 어떻게 할지 고민하고 있었다. 그러던 중, 뭐먹고 싶냐는 메시지에...7월 7일 금요일 저녁, 대형 연예 기획사에서 개발자를 하고 있는 친구A에게서 다음날 점심 식사를 하자고 연락이 왔다. 집에 있으면 엄청 나가고 싶은데, 희안하게 막상 외출할 일이 생기니 귀찮아져서 어떻게 할지 고민하고 있었다. 그러던 중, 뭐먹고 싶냐는 메시지에...7월 7일 금요일 저녁, 대형 연예 기획사에서 개발자를 하고 있는 친구A에게서 다음날 점심 식사를 하자고 연락이 왔다. 집에 있으면 엄청 나가고 싶은데, 희안하게 막상 외출할 일이 생기니 귀찮아져서 어떻게 할지 고민하고 있었다. 그러던 중, 뭐먹고 싶냐는 메시지에...]]></description>
+        </item>
+        <item>
+            <title><![CDATA[단위 테스트에서 Mockito를 사용하여 Mock 객체 만들기]]></title>
+            <link>https://besfir.github.io/ko/blog/2023/07/create-mocks-with-mockito-in-unit-test/</link>
+            <guid>https://besfir.github.io/ko/blog/2023/07/create-mocks-with-mockito-in-unit-test/</guid>
+            <pubDate>Tue, 04 Jul 2023 14:59:00 GMT</pubDate>
+            <description><![CDATA[Mockito는 mocking framework로, 개발자가 제어할 수 없는 상황을 통제하기 위해서 Mock 객체를 생성하는 용도로 사용한다. 다만, 코드 설계를 바꾸는 등의 노력을 통해서 Mock 객체를 사용하지 않을 수 있다면, 그렇게 하는것이 좋은 코드를 작...Mockito는 mocking framework로, 개발자가 제어할 수 없는 상황을 통제하기 위해서 Mock 객체를 생성하는 용도로 사용한다. 다만, 코드 설계를 바꾸는 등의 노력을 통해서 Mock 객체를 사용하지 않을 수 있다면, 그렇게 하는것이 좋은 코드를 작...Mockito는 mocking framework로, 개발자가 제어할 수 없는 상황을 통제하기 위해서 Mock 객체를 생성하는 용도로 사용한다. 다만, 코드 설계를 바꾸는 등의 노력을 통해서 Mock 객체를 사용하지 않을 수 있다면, 그렇게 하는것이 좋은 코드를 작...]]></description>
+        </item>
+        <item>
+            <title><![CDATA[Spy, Stub, Fake 그리고 Mock에 대해서 알아보자.]]></title>
+            <link>https://besfir.github.io/ko/blog/2023/06/find-out-spy-stub-fake-mock/</link>
+            <guid>https://besfir.github.io/ko/blog/2023/06/find-out-spy-stub-fake-mock/</guid>
+            <pubDate>Thu, 29 Jun 2023 14:50:00 GMT</pubDate>
+            <description><![CDATA[Mockito에 대해서 정리하기 위해 자료를 검색하던 중, 모 블로거의 test double에 관한 글에서 가짜 객체를 Stub이라 부르는 것을 발견했다. 가짜 객체라곤 Mock 밖에 몰라서 전부 Mock이라고 생각하고 있었는데, 왜 Stub이라는 단어를 사용했는...Mockito에 대해서 정리하기 위해 자료를 검색하던 중, 모 블로거의 test double에 관한 글에서 가짜 객체를 Stub이라 부르는 것을 발견했다. 가짜 객체라곤 Mock 밖에 몰라서 전부 Mock이라고 생각하고 있었는데, 왜 Stub이라는 단어를 사용했는...Mockito에 대해서 정리하기 위해 자료를 검색하던 중, 모 블로거의 test double에 관한 글에서 가짜 객체를 Stub이라 부르는 것을 발견했다. 가짜 객체라곤 Mock 밖에 몰라서 전부 Mock이라고 생각하고 있었는데, 왜 Stub이라는 단어를 사용했는...]]></description>
+        </item>
+        <item>
+            <title><![CDATA[JUnit 5로 단위 테스트 시작하기 2편]]></title>
+            <link>https://besfir.github.io/ko/blog/2023/06/start-unit-test-with-junit-part2/</link>
+            <guid>https://besfir.github.io/ko/blog/2023/06/start-unit-test-with-junit-part2/</guid>
+            <pubDate>Sun, 25 Jun 2023 11:10:00 GMT</pubDate>
+            <description><![CDATA[이번 글에서는 모르더라도 테스트를 하는데 지장은 없지만, 알면 쉽게 테스트 하는데 도움이 되는 정보들을 알아볼 예정이다.이번 글에서는 모르더라도 테스트를 하는데 지장은 없지만, 알면 쉽게 테스트 하는데 도움이 되는 정보들을 알아볼 예정이다.이번 글에서는 모르더라도 테스트를 하는데 지장은 없지만, 알면 쉽게 테스트 하는데 도움이 되는 정보들을 알아볼 예정이다.]]></description>
+        </item>
+        <item>
+            <title><![CDATA[JUnit 5로 단위 테스트 시작하기 1편]]></title>
+            <link>https://besfir.github.io/ko/blog/2023/06/start-unit-test-with-junit-part1/</link>
+            <guid>https://besfir.github.io/ko/blog/2023/06/start-unit-test-with-junit-part1/</guid>
+            <pubDate>Mon, 19 Jun 2023 13:24:00 GMT</pubDate>
+            <description><![CDATA[테스트 코드의 중요성은 이전부터 인지하고 있었지만, 그걸 익힐 시간에 코드를 짜면 더 빠르게 마무리 할 수 있으니 나중에 공부해야겠다며 계속 이뤄왔다. 하지만, 요구사항이 조금씩 추가될 때마다 주먹구구식으로 테스트 하고 있는 스스로에게 문득 부끄러움을 느꼈다. 따...테스트 코드의 중요성은 이전부터 인지하고 있었지만, 그걸 익힐 시간에 코드를 짜면 더 빠르게 마무리 할 수 있으니 나중에 공부해야겠다며 계속 이뤄왔다. 하지만, 요구사항이 조금씩 추가될 때마다 주먹구구식으로 테스트 하고 있는 스스로에게 문득 부끄러움을 느꼈다. 따...테스트 코드의 중요성은 이전부터 인지하고 있었지만, 그걸 익힐 시간에 코드를 짜면 더 빠르게 마무리 할 수 있으니 나중에 공부해야겠다며 계속 이뤄왔다. 하지만, 요구사항이 조금씩 추가될 때마다 주먹구구식으로 테스트 하고 있는 스스로에게 문득 부끄러움을 느꼈다. 따...]]></description>
+        </item>
+        <item>
+            <title><![CDATA[자바로 타임존 목록 추출하기 +코틀린]]></title>
+            <link>https://besfir.github.io/ko/blog/2023/06/create-zone-list-with-offset/</link>
+            <guid>https://besfir.github.io/ko/blog/2023/06/create-zone-list-with-offset/</guid>
+            <pubDate>Wed, 14 Jun 2023 14:24:00 GMT</pubDate>
+            <description><![CDATA[담당하고 있던 서비스에서 타임존과 오프셋 정보가 필요해 검색해봤으나 원하는 형식을 찾을 수 없었다. 따라서 가공하는 작업이 필요했는데, 기왕이면 추후 관리하기 쉽도록 코드로 가공하고 싶었다. time 패키지 쪽에서 존 목록을 불러오는 API를 봤던 기억이 나서 찾...담당하고 있던 서비스에서 타임존과 오프셋 정보가 필요해 검색해봤으나 원하는 형식을 찾을 수 없었다. 따라서 가공하는 작업이 필요했는데, 기왕이면 추후 관리하기 쉽도록 코드로 가공하고 싶었다. time 패키지 쪽에서 존 목록을 불러오는 API를 봤던 기억이 나서 찾...담당하고 있던 서비스에서 타임존과 오프셋 정보가 필요해 검색해봤으나 원하는 형식을 찾을 수 없었다. 따라서 가공하는 작업이 필요했는데, 기왕이면 추후 관리하기 쉽도록 코드로 가공하고 싶었다. time 패키지 쪽에서 존 목록을 불러오는 API를 봤던 기억이 나서 찾...]]></description>
+        </item>
+        <item>
+            <title><![CDATA[내 생에 첫 향수를 구매해봤다.]]></title>
+            <link>https://besfir.github.io/ko/blog/2023/06/my-first-perfume/</link>
+            <guid>https://besfir.github.io/ko/blog/2023/06/my-first-perfume/</guid>
+            <pubDate>Tue, 13 Jun 2023 04:16:00 GMT</pubDate>
+            <description><![CDATA[우연히 동생이 준 핸드크림 향기가 너무도 좋아서 푹 빠져버렸고, 손 뿐만 아니라 그냥 내게서 이 향기가 났으면 했다. 그래서 검색을 해보니 향수도 판매했고, 택배비만 내면 제품 6종의 무료 시향지도 받아볼 수 있었다. 시향지를 받아보기 전까지는 상탈 크림 하나만...우연히 동생이 준 핸드크림 향기가 너무도 좋아서 푹 빠져버렸고, 손 뿐만 아니라 그냥 내게서 이 향기가 났으면 했다. 그래서 검색을 해보니 향수도 판매했고, 택배비만 내면 제품 6종의 무료 시향지도 받아볼 수 있었다. 시향지를 받아보기 전까지는 상탈 크림 하나만...우연히 동생이 준 핸드크림 향기가 너무도 좋아서 푹 빠져버렸고, 손 뿐만 아니라 그냥 내게서 이 향기가 났으면 했다. 그래서 검색을 해보니 향수도 판매했고, 택배비만 내면 제품 6종의 무료 시향지도 받아볼 수 있었다. 시향지를 받아보기 전까지는 상탈 크림 하나만...]]></description>
+        </item>
+        <item>
+            <title><![CDATA[requestAnimationFrame()에 대해 알아보자]]></title>
+            <link>https://besfir.github.io/ko/blog/2023/06/request-animation-frame/</link>
+            <guid>https://besfir.github.io/ko/blog/2023/06/request-animation-frame/</guid>
+            <pubDate>Sun, 11 Jun 2023 12:30:00 GMT</pubDate>
+            <description><![CDATA[CSS만으로 표현하기 어려운 애니메이션을 구현하기 위해서는 자바스크립트를 사용해야 하는데, 최적화 없이 이를 사용하면 성능상 문제가 발생할 수 있다. rAF()가 나오기 전에는 최적화 기법으로 timer 함수가 사용됐고, 그 이후로는 rAF()을 사용되고 있다.CSS만으로 표현하기 어려운 애니메이션을 구현하기 위해서는 자바스크립트를 사용해야 하는데, 최적화 없이 이를 사용하면 성능상 문제가 발생할 수 있다. rAF()가 나오기 전에는 최적화 기법으로 timer 함수가 사용됐고, 그 이후로는 rAF()을 사용되고 있다.CSS만으로 표현하기 어려운 애니메이션을 구현하기 위해서는 자바스크립트를 사용해야 하는데, 최적화 없이 이를 사용하면 성능상 문제가 발생할 수 있다. rAF()가 나오기 전에는 최적화 기법으로 timer 함수가 사용됐고, 그 이후로는 rAF()을 사용되고 있다.]]></description>
+        </item>
+        <item>
+            <title><![CDATA[Java/Kotlin에서 실행 시간 측정 하기. +Spring Framework]]></title>
+            <link>https://besfir.github.io/ko/blog/2023/06/measure-elapsed-time-in-java-and-kotlin/</link>
+            <guid>https://besfir.github.io/ko/blog/2023/06/measure-elapsed-time-in-java-and-kotlin/</guid>
+            <pubDate>Thu, 08 Jun 2023 14:58:00 GMT</pubDate>
+            <description><![CDATA[자바에서 실행 시간을 측정하는 대중적인 방법으로 System.currentTimeMillis()와 System.nanoTime()이 많이 알려져있다. 이 글에서는 몇가지 이유로 후자를 사용해서 실행 시간을 측정을 할 예정인데, 그 이유도 간단히 정리해보도록 하겠다.자바에서 실행 시간을 측정하는 대중적인 방법으로 System.currentTimeMillis()와 System.nanoTime()이 많이 알려져있다. 이 글에서는 몇가지 이유로 후자를 사용해서 실행 시간을 측정을 할 예정인데, 그 이유도 간단히 정리해보도록 하겠다.자바에서 실행 시간을 측정하는 대중적인 방법으로 System.currentTimeMillis()와 System.nanoTime()이 많이 알려져있다. 이 글에서는 몇가지 이유로 후자를 사용해서 실행 시간을 측정을 할 예정인데, 그 이유도 간단히 정리해보도록 하겠다.]]></description>
+        </item>
+        <item>
+            <title><![CDATA[Git 특정 디렉터리만 clone 하기]]></title>
+            <link>https://besfir.github.io/ko/blog/2023/06/git-clone-specific-directory/</link>
+            <guid>https://besfir.github.io/ko/blog/2023/06/git-clone-specific-directory/</guid>
+            <pubDate>Wed, 07 Jun 2023 07:20:00 GMT</pubDate>
+            <description><![CDATA[깃 레포지토리 내에 특정 디렉터리만 필요한 경우가 종종 있는데, 이때에 v1.7부터 추가된 'Sparse checkout' 기능을 이용하면 특정 경로만 복제할 수 있다.깃 레포지토리 내에 특정 디렉터리만 필요한 경우가 종종 있는데, 이때에 v1.7부터 추가된 'Sparse checkout' 기능을 이용하면 특정 경로만 복제할 수 있다.깃 레포지토리 내에 특정 디렉터리만 필요한 경우가 종종 있는데, 이때에 v1.7부터 추가된 'Sparse checkout' 기능을 이용하면 특정 경로만 복제할 수 있다.]]></description>
+        </item>
+        <item>
+            <title><![CDATA[알파인 리눅스 도커 이미지를 이용할때 타임존 설정하기]]></title>
+            <link>https://besfir.github.io/ko/blog/2023/06/setting-the-timezone-in-alpine/</link>
+            <guid>https://besfir.github.io/ko/blog/2023/06/setting-the-timezone-in-alpine/</guid>
+            <pubDate>Tue, 06 Jun 2023 09:55:00 GMT</pubDate>
+            <description><![CDATA[프로덕션 환경에서는 cron 작업이나 로그 시간 현지화 그리고 DB와 OS 간의 시간 동기화 등의 이유로 직접 타임존을 설정해야 한다. 타임존 설정 방법은 배포판에 따라 차이가 있는데, 이번 글에서는 도커 환경을 구축할때 자주 사용되는 Alpine linux에서의...프로덕션 환경에서는 cron 작업이나 로그 시간 현지화 그리고 DB와 OS 간의 시간 동기화 등의 이유로 직접 타임존을 설정해야 한다. 타임존 설정 방법은 배포판에 따라 차이가 있는데, 이번 글에서는 도커 환경을 구축할때 자주 사용되는 Alpine linux에서의...프로덕션 환경에서는 cron 작업이나 로그 시간 현지화 그리고 DB와 OS 간의 시간 동기화 등의 이유로 직접 타임존을 설정해야 한다. 타임존 설정 방법은 배포판에 따라 차이가 있는데, 이번 글에서는 도커 환경을 구축할때 자주 사용되는 Alpine linux에서의...]]></description>
+        </item>
+        <item>
+            <title><![CDATA[Vanilla js로 숫자 카운트 애니메이션 만들기. +Vue3]]></title>
+            <link>https://besfir.github.io/ko/blog/2023/06/animated-number-counter-vanillajs-and-vue3/</link>
+            <guid>https://besfir.github.io/ko/blog/2023/06/animated-number-counter-vanillajs-and-vue3/</guid>
+            <pubDate>Sat, 03 Jun 2023 13:40:00 GMT</pubDate>
+            <description><![CDATA[숫자 카운팅 애니메이션을 사용할 필요가 있어서 이를 구현했는데, 막상 구현한 내 코드를 보니 몹시 짜증이 밀려왔다. 나 스스로 코드가 납득이 안됐기 때문이었는데, 따라서 다른 사람이 만든 코드를 검색해봤고 지속 시간 지정, 3자리마다 콤마 표시가 가능한 요구사항을...숫자 카운팅 애니메이션을 사용할 필요가 있어서 이를 구현했는데, 막상 구현한 내 코드를 보니 몹시 짜증이 밀려왔다. 나 스스로 코드가 납득이 안됐기 때문이었는데, 따라서 다른 사람이 만든 코드를 검색해봤고 지속 시간 지정, 3자리마다 콤마 표시가 가능한 요구사항을...숫자 카운팅 애니메이션을 사용할 필요가 있어서 이를 구현했는데, 막상 구현한 내 코드를 보니 몹시 짜증이 밀려왔다. 나 스스로 코드가 납득이 안됐기 때문이었는데, 따라서 다른 사람이 만든 코드를 검색해봤고 지속 시간 지정, 3자리마다 콤마 표시가 가능한 요구사항을...]]></description>
+        </item>
+        <item>
+            <title><![CDATA[Docker 내부에서 PM2를 사용할 수 있을까?]]></title>
+            <link>https://besfir.github.io/ko/blog/2023/06/can-i-use-pm2-with-docker/</link>
+            <guid>https://besfir.github.io/ko/blog/2023/06/can-i-use-pm2-with-docker/</guid>
+            <pubDate>Thu, 01 Jun 2023 03:50:00 GMT</pubDate>
+            <description><![CDATA[Docker를 전혀 모를 때 생성한 프로젝트를 최근에 다시 확인해 보니 Docker 내부에서 PM2를 사용하고 있었다. 도커 문서에서 말하는 모범사례에 맞지 않았는데, 혹시나 예외 케이스일지도 모른다는 생각이 들어 조사한 내용을 기록해 본다.Docker를 전혀 모를 때 생성한 프로젝트를 최근에 다시 확인해 보니 Docker 내부에서 PM2를 사용하고 있었다. 도커 문서에서 말하는 모범사례에 맞지 않았는데, 혹시나 예외 케이스일지도 모른다는 생각이 들어 조사한 내용을 기록해 본다.Docker를 전혀 모를 때 생성한 프로젝트를 최근에 다시 확인해 보니 Docker 내부에서 PM2를 사용하고 있었다. 도커 문서에서 말하는 모범사례에 맞지 않았는데, 혹시나 예외 케이스일지도 모른다는 생각이 들어 조사한 내용을 기록해 본다.]]></description>
+        </item>
+        <item>
+            <title><![CDATA[컨테이너에서 하나의 서비스만 실행하는 것이 권장되는 이유는 무엇일까?]]></title>
+            <link>https://besfir.github.io/ko/blog/2023/05/one-service-per-container-docker/</link>
+            <guid>https://besfir.github.io/ko/blog/2023/05/one-service-per-container-docker/</guid>
+            <pubDate>Wed, 31 May 2023 03:29:00 GMT</pubDate>
+            <description><![CDATA[도커 문서를 보면 모범 사례로, 관심 영역의 분리를 위해 컨테이너 당 하나의 서비스를 사용할 것을 권장하고 있다. 뿐만아니라 온라인 상의 수많은 문서에서도 이에 대해 많이 언급되는데, 왜 컨테이너 당 하나의 서비스를 사용하도록 권장하는 걸까?도커 문서를 보면 모범 사례로, 관심 영역의 분리를 위해 컨테이너 당 하나의 서비스를 사용할 것을 권장하고 있다. 뿐만아니라 온라인 상의 수많은 문서에서도 이에 대해 많이 언급되는데, 왜 컨테이너 당 하나의 서비스를 사용하도록 권장하는 걸까?도커 문서를 보면 모범 사례로, 관심 영역의 분리를 위해 컨테이너 당 하나의 서비스를 사용할 것을 권장하고 있다. 뿐만아니라 온라인 상의 수많은 문서에서도 이에 대해 많이 언급되는데, 왜 컨테이너 당 하나의 서비스를 사용하도록 권장하는 걸까?]]></description>
+        </item>
+        <item>
+            <title><![CDATA[Intl RelativeTimeFormat으로 timeago.js와 비슷한 커스텀 함수만들기.]]></title>
+            <link>https://besfir.github.io/ko/blog/2023/05/create-similar-to-timeago-js/</link>
+            <guid>https://besfir.github.io/ko/blog/2023/05/create-similar-to-timeago-js/</guid>
+            <pubDate>Mon, 29 May 2023 14:55:00 GMT</pubDate>
+            <description><![CDATA[인스타그램, 트위터, 유튜브 등을 보면 xx 초 전, xx 분 전과 같은 상대시간 형태로 컨텐츠가 올라온 시간이 표시된다. 라이브러리를 사용하면 쉽게 구현이 가능하지만, JS 내장 API인 Intl을 통해 쉽고 비슷하게 구현할 수 있기 때문에 이번 기회에 정리해보...인스타그램, 트위터, 유튜브 등을 보면 xx 초 전, xx 분 전과 같은 상대시간 형태로 컨텐츠가 올라온 시간이 표시된다. 라이브러리를 사용하면 쉽게 구현이 가능하지만, JS 내장 API인 Intl을 통해 쉽고 비슷하게 구현할 수 있기 때문에 이번 기회에 정리해보...인스타그램, 트위터, 유튜브 등을 보면 xx 초 전, xx 분 전과 같은 상대시간 형태로 컨텐츠가 올라온 시간이 표시된다. 라이브러리를 사용하면 쉽게 구현이 가능하지만, JS 내장 API인 Intl을 통해 쉽고 비슷하게 구현할 수 있기 때문에 이번 기회에 정리해보...]]></description>
+        </item>
+        <item>
+            <title><![CDATA[Nuxt i18n 루트 경로 상에서 기본 로케일로 전환할 수 없는 문제 트러블 슈팅]]></title>
+            <link>https://besfir.github.io/ko/blog/2023/05/trouble-shooting-nuxt-i18n-switchlocale-problem/</link>
+            <guid>https://besfir.github.io/ko/blog/2023/05/trouble-shooting-nuxt-i18n-switchlocale-problem/</guid>
+            <pubDate>Sun, 28 May 2023 08:40:00 GMT</pubDate>
+            <description><![CDATA[Nuxt-i18n v8.0.0-beta.10으로 작업을 하던 중, `switchLocalePath()` 함수를 이용해서 루트 경로로 이동하지 못하는 현상을 발견했다. 다른 경로 간 라우팅은 문제가 없는데, 루트 경로에서 로케일 전환을 통한 라우팅만 문제가 있었다.Nuxt-i18n v8.0.0-beta.10으로 작업을 하던 중, `switchLocalePath()` 함수를 이용해서 루트 경로로 이동하지 못하는 현상을 발견했다. 다른 경로 간 라우팅은 문제가 없는데, 루트 경로에서 로케일 전환을 통한 라우팅만 문제가 있었다.Nuxt-i18n v8.0.0-beta.10으로 작업을 하던 중, `switchLocalePath()` 함수를 이용해서 루트 경로로 이동하지 못하는 현상을 발견했다. 다른 경로 간 라우팅은 문제가 없는데, 루트 경로에서 로케일 전환을 통한 라우팅만 문제가 있었다.]]></description>
+        </item>
     </channel>
 </rss>
