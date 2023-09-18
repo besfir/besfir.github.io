@@ -4,7 +4,7 @@
         <title>Besfir.log</title>
         <link>https://besfir.github.io</link>
         <description>Records Is The Rule Of Memory - Canon(2002)</description>
-        <lastBuildDate>Fri, 08 Sep 2023 04:10:39 GMT</lastBuildDate>
+        <lastBuildDate>Mon, 18 Sep 2023 14:52:40 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
         <image>
@@ -14,6 +14,13 @@
         </image>
         <copyright>All rights reserved since 2023, Besfir</copyright>
         <atom:link href="https://besfir.github.io/feed.xml" rel="self" type="application/rss+xml"/>
+        <item>
+            <title><![CDATA[코틀린 변수와 형 변환 함수]]></title>
+            <link>https://besfir.github.io/ko/blog/2023/09/kotlin-basic-variables-and-casting/</link>
+            <guid>https://besfir.github.io/ko/blog/2023/09/kotlin-basic-variables-and-casting/</guid>
+            <pubDate>Mon, 18 Sep 2023 14:55:00 GMT</pubDate>
+            <description><![CDATA[코틀린을 우연히 다뤄봤는데 굉장히 재미있어서 이 재미를 공유하고 싶은 마음이 들었다. 그래서 코틀린을 기초부터 웹 개발까지 간략히 다루는 코틀린으로 웹개발 시작하기 시리즈를 작성하려 한다. 개발 환경은 IntelliJ와 Mac을 이용중이므로 이에 맞춰 작성된다.코틀린을 우연히 다뤄봤는데 굉장히 재미있어서 이 재미를 공유하고 싶은 마음이 들었다. 그래서 코틀린을 기초부터 웹 개발까지 간략히 다루는 코틀린으로 웹개발 시작하기 시리즈를 작성하려 한다. 개발 환경은 IntelliJ와 Mac을 이용중이므로 이에 맞춰 작성된다.코틀린을 우연히 다뤄봤는데 굉장히 재미있어서 이 재미를 공유하고 싶은 마음이 들었다. 그래서 코틀린을 기초부터 웹 개발까지 간략히 다루는 코틀린으로 웹개발 시작하기 시리즈를 작성하려 한다. 개발 환경은 IntelliJ와 Mac을 이용중이므로 이에 맞춰 작성된다.]]></description>
+        </item>
         <item>
             <title><![CDATA[Tailwind CSS Typhography Plugin 사용법 및 커스터마이징]]></title>
             <link>https://besfir.github.io/ko/blog/2023/09/tailwindcss-typhography-plugin/</link>
