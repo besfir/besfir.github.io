@@ -1,0 +1,1 @@
+import{_ as o,o as s,e as r,D as t}from"./entry.WD0-smin.js";const c={},n={class:"break-words"};function a(e,_){return s(),r("code",n,[t(e.$slots,"default")])}const l=o(c,[["render",a]]);export{l as default};
