@@ -1,1 +1,0 @@
-import{_ as o,o as t,e as a,b as e,D as c}from"./entry.WD0-smin.js";const r={},l={class:""},n={class:"overflow-x-auto"};function _(s,d){return t(),a("div",l,[e("div",n,[e("table",null,[c(s.$slots,"default")])])])}const i=o(r,[["render",_]]);export{i as default};
