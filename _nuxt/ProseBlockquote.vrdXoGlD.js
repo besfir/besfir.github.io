@@ -1,1 +1,0 @@
-import{_ as o,o as s,e as t,b as c,D as r}from"./entry.EfRO1_8c.js";const a={},n={class:""};function l(e,_){return s(),t("div",n,[c("blockquote",null,[r(e.$slots,"default")])])}const f=o(a,[["render",l]]);export{f as default};

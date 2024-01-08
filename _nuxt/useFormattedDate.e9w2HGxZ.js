@@ -1,1 +1,0 @@
-import{O as n}from"./entry.EfRO1_8c.js";function o(t,r){const e=n(t)?t.value:t;try{return new Intl.DateTimeFormat(e,{day:"numeric",month:"long",year:"numeric"}).format(r)}catch{return""}}export{o as u};
