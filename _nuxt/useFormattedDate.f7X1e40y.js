@@ -1,1 +1,0 @@
-import{P as n}from"./entry.CApV_R4h.js";function o(t,r){const e=n(t)?t.value:t;try{return new Intl.DateTimeFormat(e,{day:"numeric",month:"long",year:"numeric"}).format(r)}catch{return""}}export{o as u};
